@@ -17,6 +17,7 @@ Note **xcodebuild test** should not include the `CODE_SIGNING_REQUIRED=NO` that'
 
 Below is a quick video on setting up shared scheme for travis-ci testing.
 
-<iframe src="https://player.vimeo.com/video/276763767" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+[Video](https://player.vimeo.com/video/276763767)
+
 
 
