@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+## Heart
 
-You can use the [editor on GitHub](https://github.com/mchirico/heart/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+[![Build Status](https://travis-ci.com/mchirico/heart.svg?branch=develop)](https://travis-ci.com/mchirico/heart)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<a href='https://jira.aipiggybot.io/projects/HR/issues/DP-1?filter=allopenissues'>
+<img src="https://storage.googleapis.com/montco-stats/JiraSoftware.png" alt="drawing" width="150px;"/>
+         </a>
 
-### Markdown
+## Note:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+You will need to create your own `GoogleService-Info.plist` file from
+Firebase.
 
-```markdown
-Syntax highlighted code block
+## Travis-ci
 
-# Header 1
-## Header 2
-### Header 3
+Note **xcodebuild test** should not include the `CODE_SIGNING_REQUIRED=NO` that's only needed in **xcodebuild clean build**.  See the `.travis.yml` for a clear explaination. 
 
-- Bulleted
-- List
+Below is a quick video on setting up shared scheme for travis-ci testing.
 
-1. Numbered
-2. List
+<iframe src="https://player.vimeo.com/video/276763767" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mchirico/heart/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

@@ -1,0 +1,56 @@
+dist: trusty
+sudo: false
+matrix:
+  include:
+  - language: csharp
+    mono: none
+    dotnet: 2.1
+    before_script:
+    - echo 'test all from this directory...'
+    script:
+    - dotnet test csharp/Heart/TestHeart
+  - language: python
+    python: 3.6
+    before_script:
+    - cd python/test
+    script:
+    - python echo.py
+  - language: objective-c
+    osx_image: xcode9.4
+    podfile: swift/heart/Podfile
+    before_script:
+    - echo 'no need for ./.travisPre.sh'
+    script:
+    - cd swift/heart
+    - xcodebuild clean build -workspace heart.xcworkspace -scheme heart CODE_SIGNING_REQUIRED=NO
+      -destination 'platform=iOS Simulator,name=iPhone X,OS=11.4'
+    - xcodebuild test -workspace heart.xcworkspace -scheme heart 
+        -destination 'platform=iOS Simulator,name=iPhone X,OS=11.4' -enableCodeCoverage  YES
+  - language: go
+    go:
+    - 1.10.1
+    env:
+    - GOMAXPROCS=4
+    os:
+    - linux
+    install:
+    - go get github.com/stretchr/testify/assert
+    before_install:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+      > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - "./cc-test-reporter before-build"
+    script:
+    - export GOPATH=`pwd`/go/visitor
+    - go test -race -v -coverprofile=houseVisitor.out house/visitor
+    after_success:
+    - cat houseVisitor.out > c.out
+    - bash <(curl -s https://codecov.io/bash)
+    - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+before_install:
+- openssl aes-256-cbc -k "$super_secret_password" -in encrypt/GoogleService-Info.enc -out swift/heart/heart/GoogleService-Info.plist -d
+
+
+
+
+
