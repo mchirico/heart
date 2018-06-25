@@ -9,6 +9,7 @@
 import XCTest
 import UIKit
 import Firebase
+import GoogleSignIn
 @testable import heart
 
 class heartTests: XCTestCase {
