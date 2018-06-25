@@ -7,12 +7,11 @@ target 'heart' do
 
   # Pods for heart
    pod 'Firebase/Core'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Database'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
+   pod 'Firebase/Storage'
+   pod 'Firebase/Database'
+   pod 'Firebase/Firestore'
+   pod 'Firebase/Auth'
+   pod 'GoogleSignIn'
 
 
 
@@ -20,17 +19,12 @@ target 'heart' do
     inherit! :search_paths
     # Pods for testing
     use_frameworks!
- pod 'Firebase/Core'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Database'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
-
-    pod 'FirebaseUI/Google'
-  
-
+    pod 'Firebase/Core'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
+    pod 'Firebase/Firestore'
+    pod 'Firebase/Auth'
+    pod 'GoogleSignIn'
   end
 
   target 'heartUITests' do
@@ -41,7 +35,6 @@ target 'heart' do
     pod 'Firebase/Core'
     pod 'Firebase/Storage'
     pod 'Firebase/Database'
-    pod 'Firebase/Messaging'
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
     pod 'GoogleSignIn'
