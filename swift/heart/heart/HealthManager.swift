@@ -97,7 +97,7 @@ class HealthManager {
     
     healthKitStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead) { (success, error) in
       if !success {
-        print(error )
+        print(error ?? "Error on requestAuthorization" )
       }
     }
     
