@@ -112,6 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   @objc func tokenRefreshNotification(notification: NSNotification) {
     print("Token\n\n")
     print("Token:",InstanceID.instanceID().token() )
+
     
     
     if let refreshedToken = InstanceID.instanceID().token() {
