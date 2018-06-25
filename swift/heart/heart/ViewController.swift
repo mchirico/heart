@@ -20,7 +20,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     db = Firestore.firestore()
     
     //valid_accounts
-    self.ref.child("valid_accounts").child("d7AwlBFf6jcZCACrPsUfut1gg0f2").setValue(["username": "mchirico@gmail.com"])
+    self.ref.child("valid_accounts").child("heartRate").setValue(["username": "mchirico@gmail.com"])
     
     
   }
@@ -30,5 +30,18 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     // Dispose of any resources that can be recreated.
   }
   
+  @IBAction func buttonUpload(_ sender: UIButton) {
+    let utility = Utility()
+    utility.writeFile(fileName: "HeartRates.csv", writeString: "12\n,13\n")
+    
+    if let url = utility.getURL() {
+      
+      utility.pushToFirebase(localFile: url,
+                             remoteFile: "HeartRate.csv")
+    }
+    
+    
+    
+  }
   
 }

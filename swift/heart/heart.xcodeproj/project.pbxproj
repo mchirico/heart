@@ -19,6 +19,7 @@
 		A561016820DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016920DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016A20DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
+		A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F68E20E0E86F00674326 /* Utility.swift */; };
 		A8D16D60CE45D21D57354D5B /* Pods_heartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		A561015B20DFF07600A3188C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A561016720DFF14200A3188C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A596A75A20E0563800E94AC9 /* heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = heart.entitlements; sourceTree = "<group>"; };
+		A5C1F68E20E0E86F00674326 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A6842EB3D9757DF57D4F8DD6 /* Pods-heartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5D63D981FCCE8F7F545390D /* Pods-heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.release.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +133,7 @@
 			children = (
 				A596A75A20E0563800E94AC9 /* heart.entitlements */,
 				A561013920DFF07400A3188C /* AppDelegate.swift */,
+				A5C1F68E20E0E86F00674326 /* Utility.swift */,
 				A561013B20DFF07400A3188C /* ViewController.swift */,
 				A561013D20DFF07400A3188C /* Main.storyboard */,
 				A561014020DFF07600A3188C /* Assets.xcassets */,
@@ -547,6 +550,7 @@
 			files = (
 				A561013C20DFF07400A3188C /* ViewController.swift in Sources */,
 				A561013A20DFF07400A3188C /* AppDelegate.swift in Sources */,
+				A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
