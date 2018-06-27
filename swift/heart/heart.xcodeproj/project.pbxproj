@@ -21,7 +21,7 @@
 		A561016A20DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F68E20E0E86F00674326 /* Utility.swift */; };
 		A5DEF81220E0F9CC00105C06 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEF81120E0F9CC00105C06 /* HealthManager.swift */; };
-		A5DEF81420E0FB7900105C06 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DEF81320E0FB7900105C06 /* HealthKit.framework */; };
+		A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DEF81520E2BFAD00105C06 /* HealthKit.framework */; };
 		A8D16D60CE45D21D57354D5B /* Pods_heartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +67,7 @@
 		A596A75A20E0563800E94AC9 /* heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = heart.entitlements; sourceTree = "<group>"; };
 		A5C1F68E20E0E86F00674326 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A5DEF81120E0F9CC00105C06 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
-		A5DEF81320E0FB7900105C06 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		A5DEF81520E2BFAD00105C06 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		A6842EB3D9757DF57D4F8DD6 /* Pods-heartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5D63D981FCCE8F7F545390D /* Pods-heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.release.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				653C77B1493605C541F57106 /* Pods_heart.framework in Frameworks */,
-				A5DEF81420E0FB7900105C06 /* HealthKit.framework in Frameworks */,
+				A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 		1B72F768F24CA25269FC4656 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A5DEF81320E0FB7900105C06 /* HealthKit.framework */,
+				A5DEF81520E2BFAD00105C06 /* HealthKit.framework */,
 				638DEB2FC632E2D67541B559 /* Pods_heart.framework */,
 				3A708AA51F6644D3D59EB62D /* Pods_heartTests.framework */,
 				444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */,

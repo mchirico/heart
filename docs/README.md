@@ -1,4 +1,3 @@
-## Heart
 
 [![Build Status](https://travis-ci.com/mchirico/heart.svg?branch=develop)](https://travis-ci.com/mchirico/heart)
 
