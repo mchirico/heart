@@ -28,6 +28,13 @@ class heartTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+  
+  func testWithInnerClass(){
+    // let h = HealthKitManager()
+   // h.requestAuthorization(completion: <#T##(Bool, Error?) -> Void#>)
+    
+  }
+  
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
