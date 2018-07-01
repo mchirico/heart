@@ -22,6 +22,9 @@
 		A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F68E20E0E86F00674326 /* Utility.swift */; };
 		A5DEF81220E0F9CC00105C06 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEF81120E0F9CC00105C06 /* HealthManager.swift */; };
 		A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DEF81520E2BFAD00105C06 /* HealthKit.framework */; };
+		A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCBE5220E9537100B2725A /* SqliteBroker.swift */; };
+		A5FCBE5620E953A000B2725A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FCBE5420E953A000B2725A /* libsqlite3.tbd */; };
+		A5FCBE5720E953A000B2725A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */; };
 		A8D16D60CE45D21D57354D5B /* Pods_heartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		A5C1F68E20E0E86F00674326 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A5DEF81120E0F9CC00105C06 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		A5DEF81520E2BFAD00105C06 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		A5FCBE5220E9537100B2725A /* SqliteBroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteBroker.swift; sourceTree = "<group>"; };
+		A5FCBE5420E953A000B2725A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A6842EB3D9757DF57D4F8DD6 /* Pods-heartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5D63D981FCCE8F7F545390D /* Pods-heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.release.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FCBE5620E953A000B2725A /* libsqlite3.tbd in Frameworks */,
+				A5FCBE5720E953A000B2725A /* libsqlite3.0.tbd in Frameworks */,
 				653C77B1493605C541F57106 /* Pods_heart.framework in Frameworks */,
 				A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */,
 			);
@@ -104,6 +112,8 @@
 		1B72F768F24CA25269FC4656 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */,
+				A5FCBE5420E953A000B2725A /* libsqlite3.tbd */,
 				A5DEF81520E2BFAD00105C06 /* HealthKit.framework */,
 				638DEB2FC632E2D67541B559 /* Pods_heart.framework */,
 				3A708AA51F6644D3D59EB62D /* Pods_heartTests.framework */,
@@ -139,6 +149,7 @@
 			children = (
 				A596A75A20E0563800E94AC9 /* heart.entitlements */,
 				A561013920DFF07400A3188C /* AppDelegate.swift */,
+				A5FCBE5220E9537100B2725A /* SqliteBroker.swift */,
 				A5C1F68E20E0E86F00674326 /* Utility.swift */,
 				A5DEF81120E0F9CC00105C06 /* HealthManager.swift */,
 				A561013B20DFF07400A3188C /* ViewController.swift */,
@@ -558,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */,
 				A561013C20DFF07400A3188C /* ViewController.swift in Sources */,
 				A561013A20DFF07400A3188C /* AppDelegate.swift in Sources */,
 				A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */,

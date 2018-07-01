@@ -22,6 +22,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   var restingHearRateSamples = [HKQuantitySample]()
   var flightsClimbed = [HKQuantitySample]()
   var appleExerciseTime = [HKQuantitySample]()
+  var distanceWalkingRunning = [HKQuantitySample]()
   var stepSamples = [HKQuantitySample]()
   var nrgSamples = [HKQuantitySample]()
   
@@ -72,10 +73,27 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     // Works but comment
     //readActiveNRGBurned()
     //readFlightClimbed()
-    readAppleExerciseTime()
+    //readAppleExerciseTime()
+    //readWalkingRunning()
+    
+    writeDatabase()
+    
   }
   
-
+  
+  func writeDatabase() {
+    let sb = SqliteBroker()
+    sb.myStart()
+    sb.close()
+    let url = sb.getDatabaseFileURL()
+    
+    let utility = Utility()
+    utility.pushToFirebase(localFile: url,
+                           remoteFile: "test.sqlite")
+    
+  }
+  
+  
   
   private func requestAccessToHealthKit() {
     let healthStore = HKHealthStore()
@@ -334,13 +352,43 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   }
   
   
+  func prDistanceWalkingRunning() -> (String){
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    for r in distanceWalkingRunning {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for: HKUnit.mile())
+      
+      if count < 1.5 {
+        continue
+      }
+      let sd = result.startDate
+
+      myArray.append("\(dfmt.string(from: sd )),\(count)")
+      
+    }
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
+  }
+  
+  
+  
+  
+  
   
   func readHeartRates() {
     
     let endDate = Date()
     
     let heartRateSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.heartRate)
-
+    
     let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
                                                  end: endDate)
     
@@ -409,7 +457,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     })
     healthKitStore.execute(query)
   }
-
+  
   func readFlightClimbed() {
     let endDate = Date()
     
@@ -438,7 +486,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     })
     healthKitStore.execute(query)
   }
-
+  
   
   
   func readAppleExerciseTime() {
@@ -456,7 +504,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                                   self.appleExerciseTime = results as! [HKQuantitySample]
                                   
                                   // This is unique to View
-                                  
                                   let utility = Utility()
                                   utility.writeFile(fileName: "AppleExerciseTime.csv", writeString: self.prAppleExerciseTime())
                                   if let url = utility.getURL() {
@@ -470,6 +517,34 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     healthKitStore.execute(query)
   }
   
+  
+  func readWalkingRunning() {
+    let endDate = Date()
+    
+    let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
+    let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
+                                                 end: endDate)
+    
+    let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
+                              limit: 0, sortDescriptors: nil, resultsHandler: {
+                                (query, results, error) in
+                                
+                                DispatchQueue.main.async {
+                                  self.distanceWalkingRunning = results as! [HKQuantitySample]
+                                  
+                                  // This is unique to View
+                                  let utility = Utility()
+                                  utility.writeFile(fileName: "DistanceWalkingRunning.csv", writeString: self.prDistanceWalkingRunning())
+                                  if let url = utility.getURL() {
+                                    
+                                    utility.pushToFirebase(localFile: url,
+                                                           remoteFile: "DistanceWalkingRunning.csv")
+                                  }
+                                  
+                                }
+    })
+    healthKitStore.execute(query)
+  }
   
   
   
