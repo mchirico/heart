@@ -76,9 +76,20 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     //readAppleExerciseTime()
     //readWalkingRunning()
     
+    writeDatabase()
+    
+  }
+  
+  
+  func writeDatabase() {
     let sb = SqliteBroker()
     sb.myStart()
     sb.close()
+    let url = sb.getDatabaseFileURL()
+    
+    let utility = Utility()
+    utility.pushToFirebase(localFile: url,
+                           remoteFile: "test.sqlite")
     
   }
   

@@ -540,5 +540,25 @@ class SqliteBroker {
     db = nil
   }
   
+  
+  func getDatabaseFileURL() -> URL {
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent("test.sqlite")
+    
+    return fileURL
+    
+    //    do {
+    //      let data = try Data(contentsOf: fileURL, options: .mappedIfSafe)
+    //      let rw = RW()
+    //      rw.writeDrop("/var/log/NSDATA/test.sqlite",data: data)
+    //
+    //    } catch _ {
+    //      print("Cannot write file")
+    //    }
+    //
+  }
+  
+  
+  
 }
 
