@@ -76,7 +76,14 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     //readAppleExerciseTime()
     //readWalkingRunning()
     
-    writeDatabase()
+   // writeDatabase()
+    
+    let r = Request()
+    r.getURL(url: "https://s3.amazonaws.com/swiftbook/menudata.csv")
+    
+    let someString = "this is a test\n\n"
+    let data = Data(someString.utf8)
+    r.post(url: "https://httpbin.org/post","test", data: data)
     
   }
   
@@ -156,6 +163,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   {
     
     var age:Int?
+    age = 0
     //let birthDay: NSDate?
     var biologicalSex :HKBiologicalSexObject? = nil
     var bloodType:HKBloodTypeObject? = nil
@@ -275,6 +283,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
       //let source = result.source
       
       let source = result.sourceRevision.source.name
+      print("source: \(source)")
       
       print("\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(count),\(rate)")
       s = s + "\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(Int(count)),\(rate)\n"
