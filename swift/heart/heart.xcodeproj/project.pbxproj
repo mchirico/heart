@@ -25,6 +25,7 @@
 		A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCBE5220E9537100B2725A /* SqliteBroker.swift */; };
 		A5FCBE5620E953A000B2725A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FCBE5420E953A000B2725A /* libsqlite3.tbd */; };
 		A5FCBE5720E953A000B2725A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */; };
+		A5FCBE5B20EA49B000B2725A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCBE5A20EA49B000B2725A /* Request.swift */; };
 		A8D16D60CE45D21D57354D5B /* Pods_heartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		A5FCBE5220E9537100B2725A /* SqliteBroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteBroker.swift; sourceTree = "<group>"; };
 		A5FCBE5420E953A000B2725A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		A5FCBE5A20EA49B000B2725A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A6842EB3D9757DF57D4F8DD6 /* Pods-heartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E5D63D981FCCE8F7F545390D /* Pods-heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.release.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 			children = (
 				A596A75A20E0563800E94AC9 /* heart.entitlements */,
 				A561013920DFF07400A3188C /* AppDelegate.swift */,
+				A5FCBE5A20EA49B000B2725A /* Request.swift */,
 				A5FCBE5220E9537100B2725A /* SqliteBroker.swift */,
 				A5C1F68E20E0E86F00674326 /* Utility.swift */,
 				A5DEF81120E0F9CC00105C06 /* HealthManager.swift */,
@@ -570,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */,
+				A5FCBE5B20EA49B000B2725A /* Request.swift in Sources */,
 				A561013C20DFF07400A3188C /* ViewController.swift in Sources */,
 				A561013A20DFF07400A3188C /* AppDelegate.swift in Sources */,
 				A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */,
