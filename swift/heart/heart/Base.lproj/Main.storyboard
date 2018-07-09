@@ -25,7 +25,7 @@
                                     <color key="titleColor" red="0.95704192089999995" green="1" blue="0.38715624580000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonUpload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MkM-tu-jHc"/>
+                                    <action selector="buttonHR:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hew-BW-oqV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQi-tH-NpG">
@@ -39,8 +39,8 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eMl-B0-tcX">
-                                <rect key="frame" x="16" y="108" width="343" height="190"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="16" y="108" width="285" height="190"/>
+                                <color key="backgroundColor" red="0.56214828539589456" green="0.97660584827601182" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -50,19 +50,50 @@
                                     <!--2018-06-26 16:02:21 +0000-->
                                 </date>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm3-wh-Zfl">
+                                <rect key="frame" x="309" y="108" width="50" height="34"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="dNS-Cp-dah"/>
+                                    <constraint firstAttribute="width" priority="100" constant="132" id="eAq-R7-KcP"/>
+                                </constraints>
+                                <state key="normal" title="Upload">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonUpload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dHG-Oi-0fL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCF-ko-WlL">
+                                <rect key="frame" x="311" y="150" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.1022093434353849" blue="0.059933349995745622" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Stat">
+                                    <color key="titleColor" red="0.95704192089999995" green="1" blue="0.38715624580000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" red="0.56214828539999995" green="0.97660584829999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonStat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jqB-Lu-965"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2bx-VZ-CF0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7IJ-uu-tMr"/>
+                            <constraint firstItem="Gm3-wh-Zfl" firstAttribute="trailing" secondItem="MQi-tH-NpG" secondAttribute="trailing" id="7qq-vK-WzA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yCF-ko-WlL" secondAttribute="trailing" constant="18" id="9yd-p0-D0p"/>
                             <constraint firstItem="MQi-tH-NpG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ay4-aj-Fyc"/>
                             <constraint firstItem="Sby-ap-EL4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="J02-TP-bys"/>
+                            <constraint firstItem="yCF-ko-WlL" firstAttribute="leading" secondItem="eMl-B0-tcX" secondAttribute="trailing" constant="10" id="TL8-mg-izY"/>
+                            <constraint firstItem="Gm3-wh-Zfl" firstAttribute="leading" secondItem="eMl-B0-tcX" secondAttribute="trailing" constant="8" symbolic="YES" id="V9d-A4-lcI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2bx-VZ-CF0" secondAttribute="bottom" constant="145" id="W4I-lw-e9R"/>
                             <constraint firstItem="MQi-tH-NpG" firstAttribute="top" secondItem="Sby-ap-EL4" secondAttribute="bottom" constant="8" id="Yjs-Za-Tl9"/>
                             <constraint firstItem="eMl-B0-tcX" firstAttribute="top" secondItem="MQi-tH-NpG" secondAttribute="bottom" constant="8" id="dqa-sg-3Ah"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MQi-tH-NpG" secondAttribute="trailing" constant="16" id="oYI-Jy-Ou8"/>
+                            <constraint firstItem="yCF-ko-WlL" firstAttribute="top" secondItem="Gm3-wh-Zfl" secondAttribute="bottom" constant="8" id="oyQ-vi-3Jr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2bx-VZ-CF0" secondAttribute="trailing" constant="39" id="pY8-0q-d1a"/>
+                            <constraint firstItem="Gm3-wh-Zfl" firstAttribute="top" secondItem="eMl-B0-tcX" secondAttribute="top" id="rDJ-D2-3N9"/>
                             <constraint firstItem="eMl-B0-tcX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="slF-21-6l7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eMl-B0-tcX" secondAttribute="trailing" constant="16" id="tDl-FR-F9u"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eMl-B0-tcX" secondAttribute="trailing" priority="100" constant="16" id="tDl-FR-F9u"/>
                             <constraint firstItem="2bx-VZ-CF0" firstAttribute="top" secondItem="eMl-B0-tcX" secondAttribute="bottom" constant="8" id="tlo-9D-nYT"/>
                             <constraint firstItem="Sby-ap-EL4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uPr-bf-Prf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sby-ap-EL4" secondAttribute="trailing" constant="16" id="wAx-3i-oUg"/>

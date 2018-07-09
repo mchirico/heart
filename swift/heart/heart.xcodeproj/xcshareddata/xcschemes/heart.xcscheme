@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8AC227E053859FE56C51EAD7F08E0DF6"
+               BlueprintIdentifier = "488CA9079247B8F25888405871FCF2F4"
                BuildableName = "GoogleToolboxForMac.framework"
                BlueprintName = "GoogleToolboxForMac"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "623EF7E73C9740C44806D080EDBF68A7"
+               BlueprintIdentifier = "A49DF37C51E12FD88A475F57FBEFDACD"
                BuildableName = "Pods_heart.framework"
                BlueprintName = "Pods-heart"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0CF6F09720AA67E6DC52B3D86DCE7DA"
+               BlueprintIdentifier = "3089B661B68CF93CC5F8F5EC38622AF5"
                BuildableName = "Pods_heartTests.framework"
                BlueprintName = "Pods-heartTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "244CAC32D70A5135CB93404932C5A048"
+               BlueprintIdentifier = "AD49BF1E12F6B732FBD9A02DA7CDC8EF"
                BuildableName = "Pods_heartUITests.framework"
                BlueprintName = "Pods-heartUITests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4DD95323C54A78F879DAB0F1508B8E7"
+               BlueprintIdentifier = "4605323355D78230ED08F1D597760F49"
                BuildableName = "nanopb.framework"
                BlueprintName = "nanopb"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -96,7 +96,18 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A561013520DFF07400A3188C"
+            BuildableName = "heart.app"
+            BlueprintName = "heart"
+            ReferencedContainer = "container:heart.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">

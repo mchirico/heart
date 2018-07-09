@@ -10,10 +10,11 @@ import Foundation
 
 class Request{
   
+  var contents = ""
   
   func post(url: String, _ locationFile: String, data: Data) {
     
-    //let url:String = "https://content.dropboxapi.com/2/files/upload"
+    
     let TOKEN="abc"
     
     let size=data.count
@@ -54,13 +55,13 @@ class Request{
     
     if let url = URL(string: url) {
       do {
-        let contents = try String(contentsOf: url)
-        print(contents)
+        contents = try String(contentsOf: url)
+        //print(contents)
       } catch {
-        // contents could not be loaded
+        print("Contents could not be loaded")
       }
     } else {
-      // the URL was bad!
+      print("The URL was bad")
     }
     
   }
