@@ -18,18 +18,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sby-ap-EL4">
-                                <rect key="frame" x="33" y="49" width="83" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sby-ap-EL4">
+                                <rect key="frame" x="16" y="32" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.054492481641858104" green="0.085862034518673663" blue="0.2606258095854922" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="HR">
+                                    <color key="titleColor" red="0.95704192089999995" green="1" blue="0.38715624580000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonUpload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MkM-tu-jHc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQi-tH-NpG">
+                                <rect key="frame" x="16" y="70" width="343" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.42544149949999999" blue="0.32376073389999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Test">
+                                    <color key="titleColor" red="0.048879227579999997" green="0.044929832689999998" blue="0.20913617230000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="test:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgp-lX-O68"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eMl-B0-tcX">
+                                <rect key="frame" x="16" y="108" width="343" height="190"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="4" translatesAutoresizingMaskIntoConstraints="NO" id="2bx-VZ-CF0">
+                                <rect key="frame" x="16" y="306" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="551721741.65461504">
+                                    <!--2018-06-26 16:02:21 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2bx-VZ-CF0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7IJ-uu-tMr"/>
+                            <constraint firstItem="MQi-tH-NpG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ay4-aj-Fyc"/>
+                            <constraint firstItem="Sby-ap-EL4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="J02-TP-bys"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2bx-VZ-CF0" secondAttribute="bottom" constant="145" id="W4I-lw-e9R"/>
+                            <constraint firstItem="MQi-tH-NpG" firstAttribute="top" secondItem="Sby-ap-EL4" secondAttribute="bottom" constant="8" id="Yjs-Za-Tl9"/>
+                            <constraint firstItem="eMl-B0-tcX" firstAttribute="top" secondItem="MQi-tH-NpG" secondAttribute="bottom" constant="8" id="dqa-sg-3Ah"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MQi-tH-NpG" secondAttribute="trailing" constant="16" id="oYI-Jy-Ou8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2bx-VZ-CF0" secondAttribute="trailing" constant="39" id="pY8-0q-d1a"/>
+                            <constraint firstItem="eMl-B0-tcX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="slF-21-6l7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eMl-B0-tcX" secondAttribute="trailing" constant="16" id="tDl-FR-F9u"/>
+                            <constraint firstItem="2bx-VZ-CF0" firstAttribute="top" secondItem="eMl-B0-tcX" secondAttribute="bottom" constant="8" id="tlo-9D-nYT"/>
+                            <constraint firstItem="Sby-ap-EL4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="uPr-bf-Prf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sby-ap-EL4" secondAttribute="trailing" constant="16" id="wAx-3i-oUg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="textView0" destination="eMl-B0-tcX" id="wpO-d3-1Ux"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

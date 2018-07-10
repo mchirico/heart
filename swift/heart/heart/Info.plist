@@ -41,6 +41,10 @@
 	<string>Health Share Reason</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Health Update Reason</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Motion Usage Reason</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

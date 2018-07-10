@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     
     
-    guard let controller = GIDSignIn.sharedInstance().uiDelegate as? ViewController else { return }
+    guard (GIDSignIn.sharedInstance().uiDelegate as? ViewController) != nil else { return }
     // [END_EXCLUDE]
-    if let error = error {
+    if error != nil {
       // [START_EXCLUDE]
       print("error on sign in")
       // [END_EXCLUDE]
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     
-
+    
     var token = ""
     
     for i in 0..<deviceToken.count {
@@ -93,8 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     print("Registration succeeded!")
     print("Special Hex Token: ", token,"\n\n")
-    
-    
     print("\n**********************************\n\n")
     print("Current User \(String(describing: Auth.auth().currentUser))")
     
@@ -111,29 +109,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   
   @objc func tokenRefreshNotification(notification: NSNotification) {
     print("Token\n\n")
-    print("Token:",InstanceID.instanceID().token() )
-
     
     
-    if let refreshedToken = InstanceID.instanceID().token() {
-      print("InstanceID token: \(refreshedToken)")
-      
-      // I'd like to pass this along
-      let defaults = UserDefaults(suiteName: "group.pigshareData")!
-      defaults.set(refreshedToken, forKey: "FAuthDataToken")
-      defaults.synchronize()
-      
-      print("Done")
-      print("Current User \(String(describing: Auth.auth().currentUser))")
-      
-      
-      Analytics.logEvent("tokenRefreshNotification", parameters: [
-        "currentUser": "\(String(describing: Auth.auth().currentUser))" as NSObject,
-        "full_text": "\(refreshedToken)" as NSObject
-        ])
-      
-      
+    InstanceID.instanceID().instanceID { (result, error) in
+      if let error = error {
+        print("Error fetching remote instange ID: \(error)")
+      } else if let result = result {
+        
+        // I'd like to pass this along
+        let defaults = UserDefaults(suiteName: "group.pigshareData")!
+        defaults.set(result, forKey: "FAuthDataToken")
+        defaults.synchronize()
+        
+        print("Remote instance ID token: \(result.token)")
+      }
     }
+    
+    
     
   }
   
