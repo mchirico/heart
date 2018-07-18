@@ -23,7 +23,7 @@ class Strava {
     static let runningWorkout = "https://storage.googleapis.com/montco-stats/5_RE79_Fitness_45_Fatigue_90_Form_45.gpx"
     
   }
-
+  
   
   
   static func getPostString(params:[String:Any]) -> String
@@ -57,8 +57,6 @@ class Strava {
     var request = URLRequest(url: url!)
     request.httpMethod = "POST"
     
-    
-    
     request.setValue("Bearer \(ACCESS_TOKEN)", forHTTPHeaderField: "Authorization")
     
     let boundary = generateBoundaryString()
@@ -66,7 +64,7 @@ class Strava {
     let param = [
       "activity_type"  : "run",
       "data_type"    : "gpx"
-
+      
     ]
     request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
     request.httpBody =  createBodyWithParameters(parameters: param,
@@ -82,14 +80,14 @@ class Strava {
       }
       
       print("response = \(String(describing: response))")
-
+      
       
       let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
       print("responseString = \(String(describing: responseString))")
     })
     task.resume()
-  
-
+    
+    
     
   }
   
@@ -98,7 +96,7 @@ class Strava {
     
     let body = NSMutableData();
     
-
+    
     if parameters != nil {
       for (key, value) in parameters! {
         body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
@@ -110,7 +108,7 @@ class Strava {
     let filename = "data.gpx"
     let mimetype = "application/gpx+xml"
     
-
+    
     
     body.append("--\(boundary)\r\n".data(using: String.Encoding.utf8)!)
     body.append("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n".data(using: String.Encoding.utf8)!)
@@ -157,11 +155,11 @@ class Strava {
       data, response, error in
       
       if error != nil {
-        print("error=\(error)")
+        print("error=\(String(describing: error))")
         return
       }
       
-      print("response = \(response)")
+      print("response = \(String(describing: response))")
       
       
       guard let dataResponse = data,
