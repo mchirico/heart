@@ -9,6 +9,53 @@ import Foundation
 import UIKit
 import SQLite3
 
+import HealthKit
+
+class SQLiteTest {
+  var tableNames:[String]=[]
+  
+  func checkFile(file:String) -> Bool {
+    var db: OpaquePointer? = nil
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent(file)
+    
+    if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+      print("error opening database")
+      return false
+    }
+    
+    var statement: OpaquePointer? = nil
+    
+    if sqlite3_prepare_v2(db, "SELECT name FROM sqlite_master WHERE type='table'", -1, &statement, nil) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error preparing select: \(errmsg)")
+    }
+    
+    
+    let cols = sqlite3_column_count(statement)
+    
+    while sqlite3_step(statement) == SQLITE_ROW {
+      tableNames.removeAll()
+      for i in 0..<cols {
+        let queryResultColi = sqlite3_column_text(statement, i)
+        if queryResultColi != nil {
+          let result = String(cString: queryResultColi!)
+          tableNames.append(result)
+        }
+      }
+      print(tableNames)
+    }
+    if sqlite3_finalize(statement) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error finalizing prepared statement: \(errmsg)")
+    }
+    
+    statement = nil
+    
+    return true
+  }
+  
+}
 
 
 
@@ -44,6 +91,85 @@ class SqliteBroker {
     }
     db = nil
   }
+  
+  
+  /*
+   2016-10-19 06:39:53,58.0
+   2016-10-19 06:56:57,52.0
+   2016-10-19 07:03:30,51.0
+   2016-10-19 07:06:17,52.0
+   */
+  
+  
+  func exFileSQL(file:String,sql:String){
+    var db: OpaquePointer? = nil
+    
+    
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent(file)
+    
+    if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+      print("error opening database")
+    }
+    
+    if sqlite3_exec(db,
+                    sql, nil, nil, nil) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("Error executing statement: \(errmsg)")
+    }
+    
+    self.close(db)
+  }
+  
+  
+  func heartAdd(heartRateSamples:[HKQuantitySample]){
+    var db: OpaquePointer? = nil
+    
+    
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent("hr.sqlite")
+    
+    if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+      print("error opening database")
+    }
+    
+    
+    
+    if sqlite3_exec(db,
+                    "create table if not exists hr (d datetime, hr integer);", nil, nil, nil) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error creating table: \(errmsg)")
+    }
+    
+    sqlite3_exec(db, "BEGIN TRANSACTION;", nil, nil, nil);
+    
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    for r in heartRateSamples {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for: HKUnit(from: "count/min"))
+      let sd = result.startDate
+
+      let s = "insert into hr (d,hr) values('\(dfmt.string(from: sd ))',\(count));"
+      
+      if sqlite3_exec(db, s, nil, nil, nil) != SQLITE_OK {
+        let errmsg = String(cString: sqlite3_errmsg(db))
+        print("sqlite3_exec: \(errmsg)")
+      }
+    }
+
+    
+    sqlite3_exec(db, "END TRANSACTION;", nil, nil, nil);
+    
+    
+    self.close(db)
+    
+  }
+  
+  
+  
+  
   
   // MARK: -- TESTING --
   func testAttach() {
@@ -531,13 +657,29 @@ class SqliteBroker {
     
     statement = nil
     
-    
-    
     if sqlite3_close(db) != SQLITE_OK {
       print("error closing database")
     }
     
     db = nil
+  }
+  
+  
+  func getDatabaseFileURL(database:String) -> URL {
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent(database)
+    
+    return fileURL
+    
+    //    do {
+    //      let data = try Data(contentsOf: fileURL, options: .mappedIfSafe)
+    //      let rw = RW()
+    //      rw.writeDrop("/var/log/NSDATA/test.sqlite",data: data)
+    //
+    //    } catch _ {
+    //      print("Cannot write file")
+    //    }
+    //
   }
   
   

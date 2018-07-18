@@ -11,10 +11,14 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   
   var window: UIWindow?
+  
+  
   
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -29,6 +33,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   @available(iOS 9.0, *)
   func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
     -> Bool {
+      
+      print("****************\n\n\n\n**************\n\n\(url)\n\n\n")
+      print("will need to pass back")
+      
+      var array = "\(url)".split(separator: "&")
+      print(array)
+      let filtered = array.filter { $0.range(of: "code=.*", options: .regularExpression) != nil  }
+      if filtered.count == 1 {
+        let s = filtered[0]
+        strava.CODE = String(s.suffix(from: s.index(s.startIndex, offsetBy: 5)))
+        print("strava.CODE: \(strava.CODE)")
+        strava.tokenExchange()
+      }
+      print("filtered=\(filtered) length= \(filtered.count)")
+      
+
+      
       return GIDSignIn.sharedInstance().handle(url,
                                                sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                annotation: [:])
