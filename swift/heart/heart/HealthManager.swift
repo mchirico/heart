@@ -399,19 +399,26 @@ class HealthKitManager {
       let ed = result.endDate
       let diff = ed.timeIntervalSince(sd)
       
+
+      
       let rate = count / diff
       //let source = result.source
+
       
-      if 1 == 2 {
-        let source = result.sourceRevision.source.name
-        print("source: \(source)")
-      }
+   
+//        let source = result.sourceRevision.source.name
+//        print("source: \(source)")
+   
       
       
+      
+//      print( " \(dfmt.string(from: sd )), " +
+//        " \(dfmt.string(from: ed ) ), \(dfmtZ.string(from: ed)) " +
+//      " \(count),\(rate * 60),\(rate), \(diff)" )
       
       print( " \(dfmt.string(from: sd )), " +
-        " \(dfmt.string(from: ed ) ), \(dfmtZ.string(from: ed)) " +
-      " \(count),\(rate * 60),\(rate)" )
+        " \(dfmt.string(from: ed ) ), \(rate * 60)")
+
 
       
       s = s + "\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(Int(count)),\(rate)\n"

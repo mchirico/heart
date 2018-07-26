@@ -20,7 +20,7 @@ class Strava {
   
   
   enum SampleData {
-    static let runningWorkout = "https://storage.googleapis.com/montco-stats/5_RE79_Fitness_45_Fatigue_90_Form_45.gpx"
+    static let runningWorkout = "https://storage.googleapis.com/montco-stats/7_RE155_Fitness_51_Fatigue_83_Form_32_PiR_20.tcx"
     
   }
   
@@ -63,7 +63,7 @@ class Strava {
     
     let param = [
       "activity_type"  : "run",
-      "data_type"    : "gpx"
+      "data_type"    : "tcx"
       
     ]
     request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")

@@ -17,7 +17,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   var ref: DatabaseReference!
   var db: Firestore!
   
-  var startDate = Date().addingTimeInterval(-21*24*60*60)
+  var startDate = Date().addingTimeInterval(-2*24*60*60)
   var distance = 0.0
   
   // let healthManager:HealthManager = HealthManager()
@@ -47,6 +47,24 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     //valid_accounts
     self.ref.child("valid_accounts").child("heartRate").setValue(["username": "mchirico@gmail.com"])
     
+    
+  // Weather
+    ref.child("access_token").child("OpenWeatherMap").observeSingleEvent(of: .value, with: { (snapshot) in
+      let WEATHER_TOKEN = snapshot.value as? String ?? ""
+      print("WEATHER_TOKEN  \(WEATHER_TOKEN)")
+      
+      let weather = Weather(WEATHER_TOKEN)
+      let start = Date().addingTimeInterval(-2*60)
+      let end = Date().addingTimeInterval(-2*60)
+      
+      let w = weather.history(start: start, end: end,lat: "40.0704370",
+                      lon: "-75.1276880")
+      print(w)
+      
+      
+    }) { (error) in
+      print(error.localizedDescription)
+    }
     
     
     ref.child("access_token").child("stravaTest").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -102,6 +120,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
   }
   
+  // MARK: UPLOAD
   @IBAction func buttonUpload(_ sender: UIButton) {
     strava.test()
   }
@@ -152,6 +171,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     // readSteps()
     
+    let startDate = Date().addingTimeInterval(-1*24*60*60)
     let h = HealthKitManager()
     h.requestAccessToHealthKit()
     h.readSteps(withStart: startDate)

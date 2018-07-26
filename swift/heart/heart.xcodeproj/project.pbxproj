@@ -21,6 +21,7 @@
 		A561016820DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016920DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016A20DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
+		A5B355CE210A175C0025FA99 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B355CD210A175C0025FA99 /* Weather.swift */; };
 		A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F68E20E0E86F00674326 /* Utility.swift */; };
 		A5DEF81220E0F9CC00105C06 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEF81120E0F9CC00105C06 /* HealthManager.swift */; };
 		A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DEF81520E2BFAD00105C06 /* HealthKit.framework */; };
@@ -73,6 +74,7 @@
 		A561015B20DFF07600A3188C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A561016720DFF14200A3188C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A596A75A20E0563800E94AC9 /* heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = heart.entitlements; sourceTree = "<group>"; };
+		A5B355CD210A175C0025FA99 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A5C1F68E20E0E86F00674326 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A5DEF81120E0F9CC00105C06 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		A5DEF81520E2BFAD00105C06 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -155,6 +157,7 @@
 			children = (
 				A596A75A20E0563800E94AC9 /* heart.entitlements */,
 				A561013920DFF07400A3188C /* AppDelegate.swift */,
+				A5B355CD210A175C0025FA99 /* Weather.swift */,
 				A5FCBE5A20EA49B000B2725A /* Request.swift */,
 				A52ED28720FD6D9800B93FDC /* Strava.swift */,
 				A5FCBE5220E9537100B2725A /* SqliteBroker.swift */,
@@ -520,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B355CE210A175C0025FA99 /* Weather.swift in Sources */,
 				A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */,
 				A5FCBE5B20EA49B000B2725A /* Request.swift in Sources */,
 				A561013C20DFF07400A3188C /* ViewController.swift in Sources */,
