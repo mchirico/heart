@@ -21,8 +21,9 @@ class Weather {
     
     // lat="40.0704370" lon="-75.1276880"
     
-    let url = "https://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(ACCESS_TOKEN)"
-    
+    let url = "https://api.weather.gov/points/\(lat),\(lon)"
+//    let url = "https://samples.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(ACCESS_TOKEN)"
+//
 
     
     print("Time: \(start.timeIntervalSince1970)")
