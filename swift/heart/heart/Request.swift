@@ -52,18 +52,15 @@ class Request{
   
   
   func getURL(url: String){
-    
     if let url = URL(string: url) {
       do {
         contents = try String(contentsOf: url)
-        //print(contents)
       } catch {
         print("Contents could not be loaded")
       }
     } else {
       print("The URL was bad")
     }
-    
   }
   
 }

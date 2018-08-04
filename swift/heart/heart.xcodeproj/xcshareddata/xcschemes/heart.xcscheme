@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3089B661B68CF93CC5F8F5EC38622AF5"
+               BlueprintIdentifier = "0910104A4F0ABDEFE32C4454898E8AEB"
                BuildableName = "Pods_heartTests.framework"
                BlueprintName = "Pods-heartTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AD49BF1E12F6B732FBD9A02DA7CDC8EF"
+               BlueprintIdentifier = "AEB8B0F57DE387AA20A11B0342157CE2"
                BuildableName = "Pods_heartUITests.framework"
                BlueprintName = "Pods-heartUITests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4605323355D78230ED08F1D597760F49"
+               BlueprintIdentifier = "768911DD610C6B369E85AE56FAF6A263"
                BuildableName = "nanopb.framework"
                BlueprintName = "nanopb"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">

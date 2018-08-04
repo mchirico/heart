@@ -20,10 +20,11 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   var startDate = Date().addingTimeInterval(-2*24*60*60)
   var distance = 0.0
   
-  let healthManager:HealthManager = HealthManager()
+  // let healthManager:HealthManager = HealthManager()
   let healthKitStore:HKHealthStore = HKHealthStore()
   var heartRateSamples = [HKQuantitySample]()
   var heartRateVaribility = [HKQuantitySample]()
+  var vo2Max = [HKQuantitySample]()
   var workoutSamples = [HKQuantitySample]()
   var workoutSamples2 = [HKSample]()  // This is for route data
   var restingHearRateSamples = [HKQuantitySample]()
@@ -46,11 +47,24 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     //valid_accounts
     self.ref.child("valid_accounts").child("heartRate").setValue(["username": "mchirico@gmail.com"])
     
-
-    self.ref.child("access_token").child("stravaTest").setValue("0d936348d557c5fab74e1075c8fa1d165f84294d")
     
-    
-    
+  // Weather
+    ref.child("access_token").child("OpenWeatherMap").observeSingleEvent(of: .value, with: { (snapshot) in
+      let WEATHER_TOKEN = snapshot.value as? String ?? ""
+      print("WEATHER_TOKEN  \(WEATHER_TOKEN)")
+      
+      let weather = Weather(WEATHER_TOKEN)
+      let start = Date().addingTimeInterval(-2*60)
+      let end = Date().addingTimeInterval(-2*60)
+      
+      let w = weather.history(start: start, end: end,lat: "40.0704370",
+                      lon: "-75.1276880")
+      print(w)
+      
+      
+    }) { (error) in
+      print(error.localizedDescription)
+    }
     
     
     ref.child("access_token").child("stravaTest").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -60,14 +74,10 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
       strava.ACCESS_TOKEN = ACCESS_TOKEN
       
       
-      
     }) { (error) in
       print(error.localizedDescription)
       self.stravaPopUp()
     }
-    
-    
-    
     
     
     requestAccessToHealthKit()
@@ -110,11 +120,20 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
   }
   
+  // MARK: UPLOAD
   @IBAction func buttonUpload(_ sender: UIButton) {
-     strava.test()
+    strava.test()
   }
   
   @IBAction func buttonStat(_ sender: UIButton) {
+    
+    let h = HealthKitManager()
+        h.requestAccessToHealthKit()
+        h.readAppleExerciseTime()
+    
+    //readVO2Max()
+    
+    
     
   }
   
@@ -142,10 +161,23 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     //readAndWriteHeartRates()
     
-    readWorkoutLocations()
+
+    // This give us the route, weather, humid
+    // readWorkoutLocations()
     
-    //readWalkingRunning()
+    // Gives distance you read on watch
+    // readWalkingRunning()
     
+    
+    // readSteps()
+    
+    let startDate = Date().addingTimeInterval(-1*24*60*60)
+    let h = HealthKitManager()
+    h.requestAccessToHealthKit()
+    h.readSteps(withStart: startDate)
+    
+    
+    return
     
     let url = URL(string: "https://example.com/post")!
     var request = URLRequest(url: url)
@@ -153,8 +185,8 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     
-   
-   
+    
+    
   }
   
   
@@ -229,6 +261,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceCycling)!,
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!,
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRateVariabilitySDNN)!,
+                       HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.vo2Max)!,
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!])
     
     healthStore.requestAuthorization(toShare: allShare, read: allRead) { (success, error) in
@@ -237,8 +270,11 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
       } else {
         print("\n*************************\nAccess is granted\n\n\n")
         print("\(self.readProfile())")
-        //self.savePushUps() // My Test (This works!)
-        self.readHeartRates()
+        
+        // My Tests
+        //  self.savePushUps() // My Test (This works!)
+        //  self.readHeartRates()
+        
       }
     }
   }
@@ -249,8 +285,9 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     , bloodtype:HKBloodTypeObject?)
   {
     
+    
     var age:Int?
-    age = 0
+    
     //let birthDay: NSDate?
     var biologicalSex :HKBiologicalSexObject? = nil
     var bloodType:HKBloodTypeObject? = nil
@@ -258,20 +295,19 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     // 1. Request birthday and calculate age
     
     do {
-      // this was the problem ///////////////
-      //try birthDay = healthKitStore.dateOfBirth() as NSDate?
       
       let birthDayComponent = try healthKitStore.dateOfBirthComponents()
       
       
-      
-      // This changed in Swift 3
       let dfmt = DateFormatter()
       dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
       
       if let birthDay = birthDayComponent.date {
+        age = Calendar.current.dateComponents([.year], from: birthDay, to: Date()).year
         let dateString = dfmt.string(from: birthDay )
         print("birthDay = \(dateString)")
+        print("Age: \(String(describing: age ?? 0))")
+        
       }
       
     } catch {
@@ -282,8 +318,8 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     do {
       biologicalSex = try healthKitStore.biologicalSex()
-      for _ in 0...30 {
-        print("*+")
+      for _ in 0...3 {
+        print("\n*+")
       }
       // Maybe guard?
       // https://www.natashatherobot.com/healthkit-asking-for-identifying-information/
@@ -369,10 +405,13 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
       let rate = count / diff
       //let source = result.source
       
-      let source = result.sourceRevision.source.name
-      print("source: \(source)")
+      if 1 == 2 {
+         let source = result.sourceRevision.source.name
+         print("source: \(source)")
+      }
       
-      print("\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(count),\(rate)")
+      
+      print("\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(count),\(rate*60),\(rate)")
       s = s + "\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(Int(count)),\(rate)\n"
       // Keep this
       // s = s + "\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(source),\(diff),\(Int(count)),\(rate)\n"
@@ -475,6 +514,31 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     return s
   }
   
+  func tdDistanceWalkingRunning() -> [Date:Double] {
+
+    let dfmt = DateFormatter()
+    
+    var td = [Date:Double]()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+    for r in distanceWalkingRunning {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for: HKUnit.meter())
+      
+      
+
+      let ed = result.endDate
+      td[ed]=count
+
+      
+    }
+    
+    return td
+  }
+  
+  
+  
   
   func prHRV() -> (String){
     var s = ""
@@ -501,6 +565,34 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     }
     return s
   }
+  
+  
+  func prVo2Max() -> (String){
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    for r in vo2Max {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for:  HKUnit(from: "ml/kg*min"))
+      
+      
+      let sd = result.startDate
+      
+      myArray.append("\(dfmt.string(from: sd )),\(count)")
+      
+    }
+    
+    print("Vo2Max:    **************************\n\n")
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
+  }
+  
   
   
   
@@ -558,6 +650,35 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                                     print("startDate: \(r.startDate)")
                                     print("endDate: \(r.endDate)")
                                     print("description: \(r.description)")
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    
+                                    
+                                    
+                                    if let meta = r.metadata {
+                                      print("\nMeta:")
+                                      for m in meta {
+                                        if m.key == "HKTimeZone" {
+                                          dateFormatter.timeZone = TimeZone(identifier: m.value as! String)
+                                          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                          print("start: \(dateFormatter.string(from: r.startDate))")
+                                          
+                                          let ti = Int(r.endDate.timeIntervalSince(r.startDate))
+                                          let seconds = ti % 60
+                                          let minutes = (ti / 60) % 60
+                                          let hours = (ti / 3600)
+                                          print("Minutes: \(minutes)")
+                                          print("Hours: \(hours)")
+                                          print("Seconds: \(seconds)")
+                                          
+
+                                          
+                                        }
+                                        print("key: \(m.key), value: \(m.value)")
+                                      }
+                                    }
+                                    print("metadata: \(String(describing: r.metadata))")
+                                    
                                     print("device: \(String(describing: r.device))")
                                     print("uuid: \(r.uuid)")
                                     
@@ -565,7 +686,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                                   
                                   print("\n  ****  **** ***** \n\n\n")
                                   self.workoutSamples2 = results!
-                                  //self.prWorkoutRoute()
+                                  self.prWorkoutRoute()
                                   
                                 }
     })
@@ -595,7 +716,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     let routeQuery = HKAnchoredObjectQuery(type: HKSeriesType.workoutRoute(), predicate: predicate2, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in
       
       guard error == nil else {
-        fatalError("The initial query failed.\(error)")
+        fatalError("The initial query failed.\(error!)")
       }
       
       // Nill
@@ -616,14 +737,10 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   }
   
   
+
   
   func getRouteData(samples:[HKSample]?,index:Int ) {
     // Separate this
-    
-    
-    
-    
-    
     
     let query = HKWorkoutRouteQuery(route: samples![index] as! HKWorkoutRoute) { (query, locationsOrNill, done, errorOrNil) in
       
@@ -655,7 +772,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
         
         print("Altitude: \(r.altitude)")
         print("Speed: \(r.speed)")
-        
         
         
         self.distance += r.distance(from: myLocation)
@@ -866,12 +982,12 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   }
   
   
-  func readWalkingRunning() {
-    let endDate = Date()
+  func readWalkingRunning(withStart:Date, end: Date) {
+   
     
     let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
-    let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
-                                                 end: endDate)
+    let predicate2 = HKQuery.predicateForSamples(withStart: withStart,
+                                                 end: end)
     
     let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
                               limit: 0, sortDescriptors: nil, resultsHandler: {
@@ -925,6 +1041,171 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     })
     healthKitStore.execute(query)
   }
+  
+  
+  
+  
+  func readVO2Max() {
+    let endDate = Date()
+    
+    
+    //  let hSampleType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.vo2Max)
+    let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.vo2Max)
+    let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
+                                                 end: endDate)
+    
+    let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
+                              limit: 0, sortDescriptors: nil, resultsHandler: {
+                                (query, results, error) in
+                                
+                                DispatchQueue.main.async {
+                                  if results == nil {
+                                    return
+                                  }
+                                  
+                                  self.vo2Max = results as! [HKQuantitySample]
+                                  
+                                  print("HERE test")
+                                  print(self.vo2Max )
+                                  
+                                  // This is unique to View
+                                  let utility = Utility()
+                                  utility.writeFile(fileName: "vo2Max.csv", writeString: self.prVo2Max())
+                                  if let url = utility.getURL() {
+                                    
+                                    utility.pushToFirebase(localFile: url,
+                                                           remoteFile: "vo2Max.csv")
+                                  }
+                                  
+                                }
+    })
+    healthKitStore.execute(query)
+  }
+  
+  
+  
+  
+  func savePushUps() {
+    //FunctionalStrengthTraining
+    
+    let end = Date()
+    
+    let start = Calendar.current.date(byAdding: .minute, value: -20, to: Date())!
+    
+    
+    let energyBurned = HKQuantity(unit: HKUnit.kilocalorie(),
+                                  doubleValue: 425.0)
+    
+    let distance = HKQuantity(unit: HKUnit.mile(),
+                              doubleValue: 0)
+    
+    let status = "felt okay...could have done more"
+    let push_ups = 40
+    let sit_ups = 50
+    let jumping_jacks = 50
+    let abdominal_lifts = 40
+    let psychology = 75   // scale 1 to 100
+    
+    //let separated = split("Split Me!", {$0==" "}, allowEmptySlices: false)
+    
+    let meta = ["push_ups": push_ups,
+                "sit_ups": sit_ups,
+                "notes": status,
+                "tag": "Entry from Heart",
+                "jumping_jacks": jumping_jacks,
+                "abdominal_lifts": abdominal_lifts,
+                "psychology": psychology,
+                HKMetadataKeyIndoorWorkout:true
+      ] as NSDictionary
+    
+    // Example of adding metadata....
+    let wrkOut = HKWorkout(activityType: HKWorkoutActivityType.functionalStrengthTraining,
+                           start: start, end: end, duration: 0,
+                           totalEnergyBurned: energyBurned, totalDistance: distance, metadata: meta as! [NSObject : AnyObject] as! [String : Any])
+    
+    // Save the workout before adding detailed samples.
+    healthKitStore.save(wrkOut) { (success, error) -> Void in
+      if !success {
+        // Perform proper error handling here...
+        print("*** An error occurred while saving the " +
+          "workout: \(String(describing: error?.localizedDescription))")
+        
+        abort()
+      }
+      
+      // Add optional, detailed information for each time interval
+      var samples: [HKQuantitySample] = []
+      
+      let distanceType =
+        HKObjectType.quantityType(
+          forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
+      
+      let distancePerInterval = HKQuantity(unit: HKUnit.foot(),
+                                           doubleValue: 165.0)
+      
+      let distancePerIntervalSample =
+        HKQuantitySample(type: distanceType!, quantity: distancePerInterval,
+                         start: start, end: end)
+      
+      samples.append(distancePerIntervalSample)
+      
+      let meta = HKQuantity(unit: HKUnit.count(),
+                            doubleValue: 40.0)
+      
+      let pType =
+        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.dietaryCaffeine)
+      
+      
+      
+      let energyBurnedType =
+        HKObjectType.quantityType(
+          forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)
+      
+      let energyBurnedPerInterval = HKQuantity(unit: HKUnit.kilocalorie(),
+                                               doubleValue: 15.5)
+      
+      let energyBurnedPerIntervalSample =
+        HKQuantitySample(type: energyBurnedType!, quantity: energyBurnedPerInterval,
+                         start: start, end: end)
+      
+      samples.append(energyBurnedPerIntervalSample)
+      
+      let heartRateType =
+        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
+      
+      let heartRateForInterval = HKQuantity(unit: HKUnit(from: "count/min"),
+                                            doubleValue: 95.0)
+      
+      let heartRateForIntervalSample =
+        HKQuantitySample(type: heartRateType!, quantity: heartRateForInterval,
+                         start: start, end: end)
+      
+      
+      
+      // Works...but don't screw up real data
+      // samples.append(heartRateForIntervalSample)
+      
+      // Continue adding detailed samples...
+      // Add all the samples to the workout.
+      self.healthKitStore.add(samples,
+                              to: wrkOut) { (success, error) -> Void in
+                                if !success {
+                                  // Perform proper error handling here...
+                                  print("*** An error occurred while adding a " +
+                                    "sample to the workout: \(String(describing: error?.localizedDescription))")
+                                  abort()
+                                } else {
+                                  print("okay...sample added")
+                                }
+      }
+    }
+    
+    
+  }
+  
+  
+  
+  
   
   
   

@@ -10,6 +10,7 @@
 		653C77B1493605C541F57106 /* Pods_heart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638DEB2FC632E2D67541B559 /* Pods_heart.framework */; };
 		6C8A66AF692D0132547236B7 /* Pods_heartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A708AA51F6644D3D59EB62D /* Pods_heartTests.framework */; };
 		A52ED28820FD6D9800B93FDC /* Strava.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ED28720FD6D9800B93FDC /* Strava.swift */; };
+		A550EB2B2101097400B7015B /* HealthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550EB2A2101097400B7015B /* HealthManagerTests.swift */; };
 		A561013A20DFF07400A3188C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561013920DFF07400A3188C /* AppDelegate.swift */; };
 		A561013C20DFF07400A3188C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561013B20DFF07400A3188C /* ViewController.swift */; };
 		A561013F20DFF07400A3188C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A561013D20DFF07400A3188C /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		A561016820DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016920DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016A20DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
+		A5B355CE210A175C0025FA99 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B355CD210A175C0025FA99 /* Weather.swift */; };
 		A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F68E20E0E86F00674326 /* Utility.swift */; };
 		A5DEF81220E0F9CC00105C06 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEF81120E0F9CC00105C06 /* HealthManager.swift */; };
 		A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DEF81520E2BFAD00105C06 /* HealthKit.framework */; };
@@ -56,6 +58,7 @@
 		638DEB2FC632E2D67541B559 /* Pods_heart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF5B115F375EB7C5F894A9E /* Pods-heart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.debug.xcconfig"; sourceTree = "<group>"; };
 		A52ED28720FD6D9800B93FDC /* Strava.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strava.swift; sourceTree = "<group>"; };
+		A550EB2A2101097400B7015B /* HealthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManagerTests.swift; sourceTree = "<group>"; };
 		A561013620DFF07400A3188C /* heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A561013920DFF07400A3188C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A561013B20DFF07400A3188C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		A561015B20DFF07600A3188C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A561016720DFF14200A3188C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A596A75A20E0563800E94AC9 /* heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = heart.entitlements; sourceTree = "<group>"; };
+		A5B355CD210A175C0025FA99 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A5C1F68E20E0E86F00674326 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A5DEF81120E0F9CC00105C06 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		A5DEF81520E2BFAD00105C06 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -153,6 +157,7 @@
 			children = (
 				A596A75A20E0563800E94AC9 /* heart.entitlements */,
 				A561013920DFF07400A3188C /* AppDelegate.swift */,
+				A5B355CD210A175C0025FA99 /* Weather.swift */,
 				A5FCBE5A20EA49B000B2725A /* Request.swift */,
 				A52ED28720FD6D9800B93FDC /* Strava.swift */,
 				A5FCBE5220E9537100B2725A /* SqliteBroker.swift */,
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				A561014E20DFF07600A3188C /* heartTests.swift */,
+				A550EB2A2101097400B7015B /* HealthManagerTests.swift */,
 				A561015020DFF07600A3188C /* Info.plist */,
 			);
 			path = heartTests;
@@ -230,8 +236,6 @@
 				A561014620DFF07600A3188C /* Sources */,
 				A561014720DFF07600A3188C /* Frameworks */,
 				A561014820DFF07600A3188C /* Resources */,
-				73202A53C44A53D547A72ADB /* [CP] Embed Pods Frameworks */,
-				8E94A0318CED351F11550B95 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,8 +255,8 @@
 				A561015120DFF07600A3188C /* Sources */,
 				A561015220DFF07600A3188C /* Frameworks */,
 				A561015320DFF07600A3188C /* Resources */,
-				3F7A828D5CC43797F22D1469 /* [CP] Embed Pods Frameworks */,
-				DED841F9F3380EF60BCC6A5D /* [CP] Copy Pods Resources */,
+				24B84A66C097FD0C686BE265 /* [CP] Embed Pods Frameworks */,
+				3FA54A9AE2029F87ED6C0510 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -402,7 +406,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heart/Pods-heart-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3F7A828D5CC43797F22D1469 /* [CP] Embed Pods Frameworks */ = {
+		24B84A66C097FD0C686BE265 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -440,6 +444,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3FA54A9AE2029F87ED6C0510 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6DBD310CCEE6FF843BD61BB6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,62 +478,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73202A53C44A53D547A72ADB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-heartTests/Pods-heartTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heartTests/Pods-heartTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E94A0318CED351F11550B95 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-heartTests/Pods-heartTests-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heartTests/Pods-heartTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C24C7451A8CDB1A64A0D8ED1 /* [CP] Check Pods Manifest.lock */ = {
@@ -550,24 +516,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DED841F9F3380EF60BCC6A5D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -575,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B355CE210A175C0025FA99 /* Weather.swift in Sources */,
 				A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */,
 				A5FCBE5B20EA49B000B2725A /* Request.swift in Sources */,
 				A561013C20DFF07400A3188C /* ViewController.swift in Sources */,
@@ -590,6 +539,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A561014F20DFF07600A3188C /* heartTests.swift in Sources */,
+				A550EB2B2101097400B7015B /* HealthManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
