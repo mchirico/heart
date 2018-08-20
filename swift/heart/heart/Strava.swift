@@ -6,6 +6,14 @@
 //  Copyright © 2018 Michael Chirico. All rights reserved.
 //
 
+/*
+ How to export:
+ 
+ https://www.strava.com/activities/1860986144/export_tcx
+ 
+ 
+ */
+
 
 import UIKit
 
@@ -43,7 +51,7 @@ class Strava {
       "code&approval_prompt=auto&scope=view_private,write&state=3StravaApp")
     
     
-    UIApplication.shared.open(url!, options: [:], completionHandler: { (success) in
+    UIApplication.shared.open(url!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
       print("Open url : \(success)")
     })
     
@@ -205,3 +213,8 @@ class Strava {
 
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
