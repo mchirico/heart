@@ -1,3 +1,5 @@
+import UIKit
+
 import Foundation
 import HealthKit
 
@@ -22,9 +24,9 @@ class HKSQuery:HKQuery {
 
 class HealthKitManager {
   
+  var textView0: UITextView!
   
-  
-  var startDate = Date().addingTimeInterval(-2*24*60*60)
+  var startDate = Date().addingTimeInterval(-10*60*60)
   var distance = 0.0
   
   
@@ -350,11 +352,14 @@ class HealthKitManager {
                                                  end: endDate)
     
     
+
     // HKSQuery
     // HKSampleQuery
     let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
                               limit: 0, sortDescriptors: nil, resultsHandler: {
                                 (query, results, error) in
+                                
+                                
                                 
                                 DispatchQueue.main.async {
                                   self.appleExerciseTime = results as! [HKQuantitySample]
@@ -451,7 +456,7 @@ class HealthKitManager {
   
   
   // MARK: Running -- what the watch says
-
+  
   
   func walkingRunningWatchDistance(withStart:Date, end: Date) {
     
@@ -509,7 +514,278 @@ class HealthKitManager {
   }
   
   
+  // Workout Date Times
   
+  
+  func WorkOutData(withStart:Date, endDate: Date) {
+    
+    print("withStart \(withStart)\n")
+    print("withEnd \(endDate)\n")
+    
+    let workoutPredicate = HKQuery.predicateForWorkouts(with: .running)
+    
+    
+    let uuidPredicate = HKQuery.predicateForObject(with: UUID(uuidString: "7C85ED07-1D0E-4CDA-9813-7217463490EB")!)
+    
+    
+    
+    // I don't think you can query by time range for workouts -- samples only?
+    
+    // let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,timePredicate])
+    
+    let timePredicate = HKQuery.predicateForSamples(withStart: withStart,
+                                                    end: endDate)
+    // let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,
+    //                                                                   timePredicate])
+    
+    
+    var compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,uuidPredicate])
+    
+    if 1 == 1 {
+      compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate])
+      
+    }
+    
+    // Can we add time?
+    // compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,uuidPredicate,timePredicate])
+    
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+                                          ascending: true)
+    
+    let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: compound,
+                              limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor], resultsHandler: {
+                                (query, results, error) in
+                                
+                                
+                                DispatchQueue.main.async {
+                                  print("\n\n  *****  Here is samples  *****\n")
+                                  print("\n error: \(error)")
+                                  
+                                  print("\n count: \(results!.count)\n")
+                                  for r in results! {
+                                    
+                                    
+                                    self.textView0.text = "Good"
+                                    
+                                    print("Sample Type: \(r.sampleType)")
+                                    print("startDate: \(r.startDate)")
+                                    print("endDate: \(r.endDate)")
+                                    print("description: \(r.description)")
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    
+                                    
+                                    
+                                    if let meta = r.metadata {
+                                      print("\nMeta:")
+                                      for m in meta {
+                                        if m.key == "HKTimeZone" {
+                                          dateFormatter.timeZone = TimeZone(identifier: m.value as! String)
+                                          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                          print("start: \(dateFormatter.string(from: r.startDate))")
+                                          
+                                          let ti = Int(r.endDate.timeIntervalSince(r.startDate))
+                                          let seconds = ti % 60
+                                          let minutes = (ti / 60) % 60
+                                          let hours = (ti / 3600)
+                                          print("Minutes: \(minutes)")
+                                          print("Hours: \(hours)")
+                                          print("Seconds: \(seconds)")
+                                          
+                                          
+                                          
+                                        }
+                                        print("key: \(m.key), value: \(m.value)")
+                                      }
+                                    }
+                                    print("metadata: \(String(describing: r.metadata))")
+                                    
+                                    print("device: \(String(describing: r.device))")
+                                    print("uuid: \(r.uuid)")
+                                    
+                                  }
+                                  
+                                  print("\n  ****  **** ***** \n\n\n")
+                                  self.workoutSamples2 = results!
+                                  // Works below, but prints a lot of data
+                                  self.prWorkoutRoute()
+                                  
+                                }
+    })
+    healthKitStore.execute(query)
+    
+  }
+  
+  
+  
+  
+  
+  
+  func prWorkoutRoute(){
+    
+    if workoutSamples2.count < 1 {
+      return
+    }
+    
+    
+    
+    // let runningPredicate = HKQuery.predicateForObject(with: workoutSamples2[0].uuid)
+    
+    let endDate = Date()
+    let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
+                                                 end: endDate)
+    
+    let routeQuery = HKAnchoredObjectQuery(type: HKSeriesType.workoutRoute(), predicate: predicate2, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in
+      
+      guard error == nil else {
+        fatalError("The initial query failed.\(error!)")
+      }
+      
+      // Nill
+      print("*******    Data(22) ********* \n")
+      print("startDate: \(self.startDate)\n")
+      
+      print("\n ---  samples --- \n")
+      print(samples)
+      print("End Data\n\n\n")
+      
+      
+      self.distance = 0.0
+      self.getRouteData(samples: samples,index: 0)
+      
+      
+      
+    }
+    self.healthKitStore.execute(routeQuery)
+    
+    
+  }
+  
+  func getRouteData(samples:[HKSample]?,index:Int ) {
+    // Separate this
+    
+    let query = HKWorkoutRouteQuery(route: samples![index] as! HKWorkoutRoute) { (query, locationsOrNill, done, errorOrNil) in
+      
+      
+      if errorOrNil != nil {
+        // Handle any errors here.
+        return
+      }
+      
+      guard let locations = locationsOrNill else {
+        fatalError("*** Invalid State: This can only fail if there was an error. ***")
+      }
+      
+      let r = locationsOrNill![0]
+      var mcc = CLLocationCoordinate2D(latitude: r.coordinate.latitude,
+                                       longitude: r.coordinate.longitude)
+      
+      var myLocation = CLLocation(coordinate: mcc, altitude: r.altitude, horizontalAccuracy: r.horizontalAccuracy, verticalAccuracy: r.verticalAccuracy, timestamp: r.timestamp)
+      
+      
+      
+      for r in locationsOrNill! {
+        print("Locations time: \(r.timestamp)")
+        print("Locations lat,lon: \(r.coordinate.latitude),\(r.coordinate.longitude)")
+        
+        let lat = Double(r.coordinate.latitude).roundTo(places: 10)
+        print("lat: \(lat)")
+        
+        
+        print("Altitude: \(r.altitude)")
+        print("Speed: \(r.speed)")
+        
+        
+        self.distance += r.distance(from: myLocation)
+        
+        
+        
+        print("Distance: \(self.distance), \(self.distance * 0.000621371) miles,  \(r.distance(from: myLocation)) \(r.distance(from: myLocation)*3.28084) feet")
+        
+        mcc = CLLocationCoordinate2D(latitude: r.coordinate.latitude,
+                                     longitude: r.coordinate.longitude)
+        
+        
+        myLocation = CLLocation(coordinate: mcc, altitude: r.altitude, horizontalAccuracy: r.horizontalAccuracy, verticalAccuracy: r.verticalAccuracy, course: r.course, speed: r.speed, timestamp: r.timestamp)
+        
+        //        myLocation = CLLocation(coordinate: mcc, altitude: r.altitude, horizontalAccuracy: r.horizontalAccuracy, verticalAccuracy: r.verticalAccuracy, timestamp: r.timestamp)
+        //
+        
+        
+        
+        
+      }
+      
+      
+      if done {
+        // The query returned all the location data associated with the route.
+        // Do something with the complete data set.
+        print("done... Distance: \(self.distance)")
+      }
+    }
+    self.healthKitStore.execute(query)
+    
+  }
+  
+  /*
+ 
+   let dateFormatter = DateFormatter()
+   dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+   guard let sd = dateFormatter.date(from: "2018-08-12 12:24:52 +0000") else {
+       fatalError(" Cannot create start date **")
+   }
+   guard let ed = dateFormatter.date(from: "2018-08-29 12:24:52 +0000") else {
+       fatalError(" Cannot create end date **")
+   }
+   
+   h.fetchTotalJoulesConsumedWithCompletionHandler(
+              startDate: sd,endDate: ed) {total,err in
+                  print("\n\nfetchTotalJoulesConsumedWithCompletionHandler: \(total)")
+   
+   }
+ 
+   Ref: https://mchirico.github.io/python/2018/07/18/swift4.html#read-more
+ 
+ */
+  
+  // Apple's example ... does this work?
+  func fetchTotalJoulesConsumedWithCompletionHandler(
+    startDate:Date, endDate:Date,
+    completionHandler:@escaping (Double?, Error?)->()) {
+    
+    let sampleType = HKQuantityType.quantityType(
+      forIdentifier: HKQuantityTypeIdentifier.flightsClimbed)
+
+    
+    let predicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                end: endDate, options: .strictStartDate)
+    
+    
+
+    let query = HKStatisticsQuery(quantityType: sampleType!,
+                                  quantitySamplePredicate: predicate,
+                                  options: .cumulativeSum) { query, result, error in
+                                    
+                                    if result == nil {
+                                      completionHandler(nil, error )
+                                      return
+                                    }
+                                    
+                                    var totalCalories = 0.0
+                                    
+                                    if let quantity = result?.sumQuantity() {
+                                      let unit = HKUnit.count()
+                                      totalCalories = quantity.doubleValue(for: unit)
+                                    }
+                                    
+                                    print("startDate: \(startDate)\n")
+                                    print("endDate: \(endDate)\n")
+                                    
+                                    completionHandler(totalCalories,error)
+    }
+    
+    healthKitStore.execute(query)
+  }
   
   
   
