@@ -128,24 +128,37 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     strava.test()
   }
   
+  // MARK: buttonSTAT
   @IBAction func buttonStat(_ sender: UIButton) {
     
     let h = HealthKitManager()
-        h.requestAccessToHealthKit()
-       // h.readAppleExerciseTime()
+    h.requestAccessToHealthKit()
+    // h.readAppleExerciseTime()
     
-    h.walkingRunningWatchDistance(withStart: Date().addingTimeInterval(-1*24*60*60),
-      end: Date())
+    // This gives true distance you read on watch
+    //    h.walkingRunningWatchDistance(withStart: Date().addingTimeInterval(-1*24*60*60),
+    //      end: Date())
     
+
+    
+    //let start = Date().addingTimeInterval(-25*24*60*60)
+    //let end = Date().addingTimeInterval(-4*24*60*60)
+    //let end = Date()
+    
+    h.textView0 = textView0
+    
+    // This works ... reviewing Sept 23
+    let start = Date().addingTimeInterval(-9*60*60)
+    let end = Date().addingTimeInterval(1*60)
+    h.WorkOutData(withStart: start, endDate: end)
+    
+    print("\n\n ********  END \(start) \n\n")
     
     //readVO2Max()
-    
-    
+
+    //StatsQuery()
     
   }
-  
-  
-  
   
   
   // MARK: Test Button
@@ -168,18 +181,19 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     //readAndWriteHeartRates()
     
-
+    
     // This give us the route, weather, humid
     //readWorkoutLocations()
     
-
+    
     
     // Gives distance you read on watch
     // readWalkingRunning()
-    readWalkingRunning(withStart: Date().addingTimeInterval(-1*24*60*60),
+    readWalkingRunning(withStart: Date().addingTimeInterval(-2*24*60*60),
                        end: Date())
     
     
+    return
     // readSteps()
     
     let startDate = Date().addingTimeInterval(-1*24*60*60)
@@ -199,6 +213,34 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     
   }
+  
+  
+  func StatsQuery() {
+    
+    let h = HealthKitManager()
+    h.requestAccessToHealthKit()
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+    guard let sd = dateFormatter.date(from: "2018-08-12 12:24:52 +0000") else {
+      fatalError(" Cannot create start date **")
+    }
+    guard let ed = dateFormatter.date(from: "2018-08-29 12:24:52 +0000") else {
+      fatalError(" Cannot create end date **")
+    }
+    
+    print("... sd: \(sd)")
+    
+    h.fetchTotalJoulesConsumedWithCompletionHandler(
+    startDate: sd,endDate: ed) {total,err in
+      print("\n\nfetchTotalJoulesConsumedWithCompletionHandler: \(total)")
+      
+    }
+    
+    
+  }
+  
+  
   
   
   
@@ -417,8 +459,8 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
       //let source = result.source
       
       if 1 == 2 {
-         let source = result.sourceRevision.source.name
-         print("source: \(source)")
+        let source = result.sourceRevision.source.name
+        print("source: \(source)")
       }
       
       
@@ -526,22 +568,22 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   }
   
   func tdDistanceWalkingRunning() -> [Date:Double] {
-
+    
     let dfmt = DateFormatter()
     
     var td = [Date:Double]()
     dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
+    
     for r in distanceWalkingRunning {
       let result = r as HKQuantitySample
       let quantity = result.quantity
       let count = quantity.doubleValue(for: HKUnit.meter())
       
       
-
+      
       let ed = result.endDate
       td[ed]=count
-
+      
       
     }
     
@@ -683,7 +725,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                                           print("Hours: \(hours)")
                                           print("Seconds: \(seconds)")
                                           
-
+                                          
                                           
                                         }
                                         print("key: \(m.key), value: \(m.value)")
@@ -749,7 +791,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   }
   
   
-
+  
   
   func getRouteData(samples:[HKSample]?,index:Int ) {
     // Separate this
@@ -995,7 +1037,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   
   
   func readWalkingRunning(withStart:Date, end: Date) {
-   
+    
     
     let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
     let predicate2 = HKQuery.predicateForSamples(withStart: withStart,
