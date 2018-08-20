@@ -48,25 +48,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     self.ref.child("valid_accounts").child("heartRate").setValue(["username": "mchirico@gmail.com"])
     
     
-  // Weather
-    ref.child("access_token").child("OpenWeatherMap").observeSingleEvent(of: .value, with: { (snapshot) in
-      let WEATHER_TOKEN = snapshot.value as? String ?? ""
-      print("WEATHER_TOKEN  \(WEATHER_TOKEN)")
-      
-      let weather = Weather(WEATHER_TOKEN)
-      let start = Date().addingTimeInterval(-2*60)
-      let end = Date().addingTimeInterval(-2*60)
-      
-      let w = weather.history(start: start, end: end,lat: "40.0704370",
-                      lon: "-75.1276880")
-      print(w)
-      
-      
-    }) { (error) in
-      print(error.localizedDescription)
-    }
-    
-    
     ref.child("access_token").child("stravaTest").observeSingleEvent(of: .value, with: { (snapshot) in
       
       let ACCESS_TOKEN = snapshot.value as? String ?? ""
@@ -82,6 +63,28 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     requestAccessToHealthKit()
   }
+  
+  
+  
+  func weather() {
+    ref.child("access_token").child("OpenWeatherMap").observeSingleEvent(of: .value, with: { (snapshot) in
+      let WEATHER_TOKEN = snapshot.value as? String ?? ""
+      print("WEATHER_TOKEN  \(WEATHER_TOKEN)")
+      
+      let weather = Weather(WEATHER_TOKEN)
+      let start = Date().addingTimeInterval(-2*60)
+      let end = Date().addingTimeInterval(-2*60)
+      
+      let w = weather.history(start: start, end: end,lat: "40.0704370",
+                              lon: "-75.1276880")
+      print(w)
+      
+      
+    }) { (error) in
+      print(error.localizedDescription)
+    }
+  }
+  
   
   
   func stravaPopUp(){
@@ -129,7 +132,11 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     let h = HealthKitManager()
         h.requestAccessToHealthKit()
-        h.readAppleExerciseTime()
+       // h.readAppleExerciseTime()
+    
+    h.walkingRunningWatchDistance(withStart: Date().addingTimeInterval(-1*24*60*60),
+      end: Date())
+    
     
     //readVO2Max()
     
@@ -163,10 +170,14 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
 
     // This give us the route, weather, humid
-    // readWorkoutLocations()
+    //readWorkoutLocations()
+    
+
     
     // Gives distance you read on watch
     // readWalkingRunning()
+    readWalkingRunning(withStart: Date().addingTimeInterval(-1*24*60*60),
+                       end: Date())
     
     
     // readSteps()
@@ -623,7 +634,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   }
   
   
-  
+  // MARK: readWorkoutLocations
   func readWorkoutLocations() {
     
     let endDate = Date()
@@ -646,6 +657,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                                 DispatchQueue.main.async {
                                   print("\n\n  *****  Here is samples  *****\n")
                                   for r in results! {
+                                    
                                     print("Sample Type: \(r.sampleType)")
                                     print("startDate: \(r.startDate)")
                                     print("endDate: \(r.endDate)")
