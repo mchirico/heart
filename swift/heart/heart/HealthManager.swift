@@ -4,7 +4,7 @@ import HealthKit
 import CoreLocation
 
 protocol ZZ {
-   init(sampleType: HKSampleType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, resultsHandler: @escaping (HKSampleQuery, [HKSample]?, Error?) -> Swift.Void)
+  init(sampleType: HKSampleType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, resultsHandler: @escaping (HKSampleQuery, [HKSample]?, Error?) -> Swift.Void)
 }
 
 
@@ -44,7 +44,7 @@ class HealthKitManager {
   
   init(){
     healthKitStore = HKHealthStore()
-
+    
   }
   
   
@@ -138,12 +138,8 @@ class HealthKitManager {
       
       let birthDayComponent = try healthKitStore.dateOfBirthComponents()
       
-      
-      
       let dfmt = DateFormatter()
       dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-      
-      
       
       
       if let birthDay = birthDayComponent.date {
@@ -353,7 +349,7 @@ class HealthKitManager {
     let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
                                                  end: endDate)
     
-
+    
     // HKSQuery
     // HKSampleQuery
     let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
@@ -399,27 +395,27 @@ class HealthKitManager {
       let ed = result.endDate
       let diff = ed.timeIntervalSince(sd)
       
-
+      
       
       let rate = count / diff
       //let source = result.source
-
-      
-   
-//        let source = result.sourceRevision.source.name
-//        print("source: \(source)")
-   
       
       
       
-//      print( " \(dfmt.string(from: sd )), " +
-//        " \(dfmt.string(from: ed ) ), \(dfmtZ.string(from: ed)) " +
-//      " \(count),\(rate * 60),\(rate), \(diff)" )
+      //        let source = result.sourceRevision.source.name
+      //        print("source: \(source)")
+      
+      
+      
+      
+      //      print( " \(dfmt.string(from: sd )), " +
+      //        " \(dfmt.string(from: ed ) ), \(dfmtZ.string(from: ed)) " +
+      //      " \(count),\(rate * 60),\(rate), \(diff)" )
       
       print( " \(dfmt.string(from: sd )), " +
         " \(dfmt.string(from: ed ) ), \(rate * 60)")
-
-
+      
+      
       
       s = s + "\(dfmt.string(from: sd )),\(dfmt.string(from: ed )),\(Int(count)),\(rate)\n"
       // Keep this
@@ -432,8 +428,8 @@ class HealthKitManager {
   
   
   func readSteps(withStart: Date,
-    endDate:Date = Date()) {
-
+                 endDate:Date = Date()) {
+    
     
     let stepSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.stepCount)
     let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
@@ -447,12 +443,70 @@ class HealthKitManager {
                                   self.stepSamples = results as! [HKQuantitySample]
                                   
                                   // This is unique to View
-                                   self.prSteps()
+                                  self.prSteps()
                                 }
     })
     healthKitStore.execute(query)
   }
   
+  
+  // MARK: Running -- what the watch says
+
+  
+  func walkingRunningWatchDistance(withStart:Date, end: Date) {
+    
+    
+    let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
+    let predicate2 = HKQuery.predicateForSamples(withStart: withStart,
+                                                 end: end)
+    
+    let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
+                              limit: 0, sortDescriptors: nil, resultsHandler: {
+                                (query, results, error) in
+                                
+                                DispatchQueue.main.async {
+                                  self.distanceWalkingRunning = results as! [HKQuantitySample]
+                                  
+                                  // This is unique to View
+                                  let utility = Utility()
+                                  utility.writeFile(fileName: "DistanceWalkingRunning.csv", writeString: self.prDistanceWalkingRunning())
+                                  if let url = utility.getURL() {
+                                    
+                                    utility.pushToFirebase(localFile: url,
+                                                           remoteFile: "DistanceWalkingRunning.csv")
+                                  }
+                                  
+                                }
+    })
+    healthKitStore.execute(query)
+  }
+  
+  func prDistanceWalkingRunning() -> (String){
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    for r in distanceWalkingRunning {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for: HKUnit.meter())
+      
+      //      if count < 0.2 {
+      //        continue
+      //      }
+      //let sd = result.startDate
+      let ed = result.endDate
+      
+      myArray.append("\(dfmt.string(from: ed )),\(count)")
+      
+    }
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
+  }
   
   
   
