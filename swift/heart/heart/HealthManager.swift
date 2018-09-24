@@ -27,6 +27,7 @@ class HealthKitManager {
   var textView0: UITextView!
   
   var startDate = Date().addingTimeInterval(-10*60*60)
+  var endDate = Date().addingTimeInterval(-10*60*60)
   var distance = 0.0
   
   
@@ -550,10 +551,11 @@ class HealthKitManager {
     // compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,uuidPredicate,timePredicate])
     
     let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
-                                          ascending: true)
+                                          ascending: false)
     
+    // HKObjectQueryNoLimit
     let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: compound,
-                              limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor], resultsHandler: {
+                              limit: 1, sortDescriptors: [sortDescriptor], resultsHandler: {
                                 (query, results, error) in
                                 
                                 
@@ -562,10 +564,17 @@ class HealthKitManager {
                                   print("\n error: \(error)")
                                   
                                   print("\n count: \(results!.count)\n")
+                                  
+                                 
+                                  
                                   for r in results! {
-                                    
-                                    
+                                  
+
                                     self.textView0.text = "Good"
+                                    
+                                    
+                                    self.startDate = r.startDate
+                                    self.endDate = r.endDate
                                     
                                     print("Sample Type: \(r.sampleType)")
                                     print("startDate: \(r.startDate)")
@@ -592,7 +601,7 @@ class HealthKitManager {
                                           print("Hours: \(hours)")
                                           print("Seconds: \(seconds)")
                                           
-                                          
+                                         
                                           
                                         }
                                         print("key: \(m.key), value: \(m.value)")
@@ -608,7 +617,10 @@ class HealthKitManager {
                                   print("\n  ****  **** ***** \n\n\n")
                                   self.workoutSamples2 = results!
                                   // Works below, but prints a lot of data
-                                  self.prWorkoutRoute()
+                                  self.prWorkoutRoute(startDate: self.startDate, endDate: self.endDate)
+                                  
+                                  // True distance?
+                                  self.walkingRunningWatchDistance(withStart: self.startDate, end: self.endDate)
                                   
                                 }
     })
@@ -621,7 +633,7 @@ class HealthKitManager {
   
   
   
-  func prWorkoutRoute(){
+  func prWorkoutRoute(startDate: Date, endDate: Date){
     
     if workoutSamples2.count < 1 {
       return

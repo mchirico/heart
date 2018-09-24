@@ -189,7 +189,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     // Gives distance you read on watch
     // readWalkingRunning()
-    readWalkingRunning(withStart: Date().addingTimeInterval(-1*24*60*60),
+    readWalkingRunning(withStart: Date().addingTimeInterval(-2*24*60*60),
                        end: Date())
     
     
