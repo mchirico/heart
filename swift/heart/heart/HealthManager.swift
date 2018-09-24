@@ -650,6 +650,10 @@ class HealthKitManager {
       print("End Data\n\n\n")
       
       
+      if samples?.count == 0 {
+        return
+      }
+      
       self.distance = 0.0
       self.getRouteData(samples: samples,index: 0)
       
