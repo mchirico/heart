@@ -16,7 +16,7 @@ matrix:
     script:
     - python echo.py
   - language: objective-c
-    osx_image: xcode9.4
+    osx_image: xcode10.0
     podfile: swift/heart/Podfile
     before_script:
     - echo 'no need for ./.travisPre.sh'

@@ -35,6 +35,32 @@ class heartUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+  
+  
+  func runThis(){
+//    let app = XCUIApplication()
+    
+//    if app.alerts.count == 0 {
+//      return
+//    }
+    
+  //  print(app.alerts.count)
+    
+    
+//    app.alerts["“heart” Wants to Use “google.com” to Sign In"].buttons["Continue"].tap()
+//    app.buttons["Stat"].tap()
+//    app.tables/*@START_MENU_TOKEN@*/.staticTexts["Turn All Categories On"]/*[[".cells.staticTexts[\"Turn All Categories On\"]",".staticTexts[\"Turn All Categories On\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+//    app.navigationBars["Health Access"].buttons["Allow"].tap()
+//
+    
+    
+  }
+  
+  
+  func testAuthExample() {
+   
+  }
+
     
 }
 

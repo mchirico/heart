@@ -43,19 +43,21 @@ class HKHealthStoreMock:HKHealthStore {
   
   
   
+  
   var expectedAge:Int?
+  
   
   override func requestAuthorization(toShare typesToShare: Set<HKSampleType>?, read typesToRead: Set<HKObjectType>?, completion: @escaping (Bool, Error?) -> Void) {
     
-    print("\n\nHERE\n\n")
+    print("\n\nMock Authorization\n\n")
   }
   
   
   override func execute(_ query: HKQuery) {
-    print("***\n\n**************  execute Test &&&&&&&&&&&&&\n\n")
-    print("query ...\(String(describing: query.predicate))\n\n ")
+    print("***\n\n**************  Execute Overide Test ******** \n\n")
+    print("query.predicate: ...\(String(describing: query.predicate))\n\n ")
     
-    debugPrint("test")
+    debugPrint("query:",query)
 
     
     print("sampleType type: \(String(describing: query.objectType))")
@@ -97,7 +99,6 @@ class HKHealthStoreMock:HKHealthStore {
 // http://www.mokacoding.com/blog/dependency-injection-for-classes-in-swift/
 class HealthKitManagerMock: HealthKitManager {
   
- 
   
   override init() {
     super.init()
@@ -146,6 +147,28 @@ class HealthManagerTests: XCTestCase {
     
   }
   
+  
+  func testFetch(){
+    let h = HealthKitManagerMock()
+    h.requestAccessToHealthKit()
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
+    guard let sd = dateFormatter.date(from: "2018-08-12 12:24:52 +0000") else {
+      fatalError(" Cannot create start date **")
+    }
+    guard let ed = dateFormatter.date(from: "2018-08-29 12:24:52 +0000") else {
+      fatalError(" Cannot create end date **")
+    }
+    
+    h.fetchTotalJoulesConsumedWithCompletionHandler(
+    startDate: sd,endDate: ed) {total,err in
+      print("\n\nfetchTotalJoulesConsumedWithCompletionHandler: \(total)")
+      
+    }
+    
+    
+  }
   
   
   
