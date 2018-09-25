@@ -128,18 +128,42 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     strava.test()
   }
   
+  
+  // MARK: ButtonTest0
+  @IBAction func buttonTest0(_ sender: UIButton) {
+    
+    var startDate = Date().addingTimeInterval(-10*24*60*60)
+    let h = HealthKitManager()
+    h.requestAccessToHealthKit()
+    h.readVO2Max(startDate: startDate)
+    
+    
+  }
+  
+  
+  // MARK: button Total
+  @IBAction func buttonTotal(_ sender: UIButton) {
+    var startDate = Date().addingTimeInterval(-10*24*60*60)
+    let h = HealthKitManager()
+    h.requestAccessToHealthKit()
+    h.readVO2Max(startDate: startDate)
+    
+  }
+  
   // MARK: buttonSTAT
   @IBAction func buttonStat(_ sender: UIButton) {
     
     let h = HealthKitManager()
     h.requestAccessToHealthKit()
+    
+    
     // h.readAppleExerciseTime()
     
     // This gives true distance you read on watch
     //    h.walkingRunningWatchDistance(withStart: Date().addingTimeInterval(-1*24*60*60),
     //      end: Date())
     
-
+    
     
     //let start = Date().addingTimeInterval(-25*24*60*60)
     //let end = Date().addingTimeInterval(-4*24*60*60)
@@ -154,8 +178,12 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     print("\n\n ********  END \(start) \n\n")
     
+    
+    
+    
+    
     //readVO2Max()
-
+    
     //StatsQuery()
     
   }

@@ -150,7 +150,7 @@ class SqliteBroker {
       let quantity = result.quantity
       let count = quantity.doubleValue(for: HKUnit(from: "count/min"))
       let sd = result.startDate
-
+      
       let s = "insert into hr (d,hr) values('\(dfmt.string(from: sd ))',\(count));"
       
       if sqlite3_exec(db, s, nil, nil, nil) != SQLITE_OK {
@@ -158,7 +158,7 @@ class SqliteBroker {
         print("sqlite3_exec: \(errmsg)")
       }
     }
-
+    
     
     sqlite3_exec(db, "END TRANSACTION;", nil, nil, nil);
     
