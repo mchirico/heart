@@ -6,6 +6,14 @@
 //  Copyright © 2018 Michael Chirico. All rights reserved.
 //
 
+/*
+ How to export:
+ 
+ https://www.strava.com/activities/1860986144/export_tcx
+ 
+ 
+ */
+
 
 import UIKit
 
