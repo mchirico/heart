@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "488CA9079247B8F25888405871FCF2F4"
+               BlueprintIdentifier = "F05BBF0ABCBAB1D55C2FE0C052A8CF62"
                BuildableName = "GoogleToolboxForMac.framework"
                BlueprintName = "GoogleToolboxForMac"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A49DF37C51E12FD88A475F57FBEFDACD"
+               BlueprintIdentifier = "778F64C7C5F69B52D3D2ECCF116B41EA"
                BuildableName = "Pods_heart.framework"
                BlueprintName = "Pods-heart"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AEB8B0F57DE387AA20A11B0342157CE2"
+               BlueprintIdentifier = "0E2BBCCB7AFE08DA28DE062A8B8D17D9"
                BuildableName = "Pods_heartUITests.framework"
                BlueprintName = "Pods-heartUITests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "768911DD610C6B369E85AE56FAF6A263"
+               BlueprintIdentifier = "103CB29B64B2741C1458942695E9BCF7"
                BuildableName = "nanopb.framework"
                BlueprintName = "nanopb"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">

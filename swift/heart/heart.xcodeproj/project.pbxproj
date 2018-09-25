@@ -280,6 +280,7 @@
 				TargetAttributes = {
 					A561013520DFF07400A3188C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -291,10 +292,12 @@
 					};
 					A561014920DFF07600A3188C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = A561013520DFF07400A3188C;
 					};
 					A561015420DFF07600A3188C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = A561013520DFF07400A3188C;
 					};
 				};
@@ -724,7 +727,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -745,7 +748,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -766,7 +769,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/heart.app/heart";
 			};
@@ -788,7 +791,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/heart.app/heart";
 			};
@@ -809,7 +812,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = heart;
 			};
@@ -830,7 +833,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = heart;
 			};

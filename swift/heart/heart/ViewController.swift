@@ -1175,7 +1175,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     // Example of adding metadata....
     let wrkOut = HKWorkout(activityType: HKWorkoutActivityType.functionalStrengthTraining,
                            start: start, end: end, duration: 0,
-                           totalEnergyBurned: energyBurned, totalDistance: distance, metadata: meta as! [NSObject : AnyObject] as! [String : Any])
+                           totalEnergyBurned: energyBurned, totalDistance: distance, metadata: meta as [NSObject : AnyObject] as! [String : Any])
     
     // Save the workout before adding detailed samples.
     healthKitStore.save(wrkOut) { (success, error) -> Void in
