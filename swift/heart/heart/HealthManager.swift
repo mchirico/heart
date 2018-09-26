@@ -884,6 +884,8 @@ class HealthKitManager {
     return s
   }
   
+  
+  
   // Ref: https://www.devfright.com/healthkit-tutorial-fetch-weight-data-swift/
   func readWeight() {
     let quantityType : Set = [HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!]
@@ -909,13 +911,41 @@ class HealthKitManager {
                                       var weight = results as! [HKQuantitySample]
                                       
                                       print("HERE test")
-                                      print(weight )
+                                      //print(weight )
+                                      self.prWeight(weight: weight)
                                       
                                     }
                                     
                                     
     })
     healthKitStore.execute(query)
+  }
+  
+  
+  func prWeight(weight: [HKQuantitySample]) -> (String){
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    for r in weight {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for: HKUnit(from: .pound))
+      
+      
+      let sd = result.startDate
+      
+      myArray.append("\(dfmt.string(from: sd )),\(count)")
+      
+    }
+    
+    print("Weight:    **************************\n\n")
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
   }
   
   
