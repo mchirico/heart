@@ -101,6 +101,8 @@ class HealthKitManager {
                        
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)!,
                        
+                       HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!,
+                       
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.appleExerciseTime)!,
                        
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!,
@@ -881,6 +883,41 @@ class HealthKitManager {
     }
     return s
   }
+  
+  // Ref: https://www.devfright.com/healthkit-tutorial-fetch-weight-data-swift/
+  func readWeight() {
+    let quantityType : Set = [HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!]
+    
+    let startDate = Date.init(timeIntervalSinceNow: -7*24*60*60)
+    let endDate = Date()
+    
+    let predicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                end: endDate,
+                                                options: .strictStartDate)
+    
+    let query = HKSampleQuery.init(sampleType: quantityType.first!,
+                                   predicate: predicate,
+                                   limit: HKObjectQueryNoLimit,
+                                   sortDescriptors: nil,
+                                   resultsHandler: { (query, results, error) in
+                                    
+                                    DispatchQueue.main.async {
+                                      if results == nil {
+                                        return
+                                      }
+                                      
+                                      var weight = results as! [HKQuantitySample]
+                                      
+                                      print("HERE test")
+                                      print(weight )
+                                      
+                                    }
+                                    
+                                    
+    })
+    healthKitStore.execute(query)
+  }
+  
   
 }
 

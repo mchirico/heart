@@ -135,7 +135,9 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     var startDate = Date().addingTimeInterval(-10*24*60*60)
     let h = HealthKitManager()
     h.requestAccessToHealthKit()
-    h.readVO2Max(startDate: startDate)
+    //h.readVO2Max(startDate: startDate)
+    
+    h.readWeight()
     
     
   }
