@@ -29,7 +29,6 @@ class Strava {
   
   enum SampleData {
     static let runningWorkout = "https://storage.googleapis.com/montco-stats/7_RE155_Fitness_51_Fatigue_83_Form_32_PiR_20.tcx"
-    
   }
   
   
