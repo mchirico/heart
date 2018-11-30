@@ -1,3 +1,16 @@
+/*
+ Will need to add documentation
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+
+
 import UIKit
 
 import Foundation
@@ -29,6 +42,8 @@ class HealthKitManager {
   var startDate = Date().addingTimeInterval(-10*60*60)
   var endDate = Date().addingTimeInterval(-10*60*60)
   var distance = 0.0
+  
+  var vo2Max = [HKQuantitySample]()
   
   
   var healthKitStore:HKHealthStore
@@ -85,6 +100,8 @@ class HealthKitManager {
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.flightsClimbed)!,
                        
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)!,
+                       
+                       HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!,
                        
                        HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.appleExerciseTime)!,
                        
@@ -333,7 +350,7 @@ class HealthKitManager {
       
       let sd = result.startDate
       
-      //Uncomment, if you want to print
+      // Uncomment, if you want to print
       
       print("\(dfmt.string(from: sd )),\(count)")
       s = s + "\(dfmt.string(from: sd )),\(count)\n"
@@ -353,7 +370,7 @@ class HealthKitManager {
                                                  end: endDate)
     
     
-
+    
     // HKSQuery
     // HKSampleQuery
     let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
@@ -565,11 +582,11 @@ class HealthKitManager {
                                   
                                   print("\n count: \(results!.count)\n")
                                   
-                                 
+                                  
                                   
                                   for r in results! {
-                                  
-
+                                    
+                                    
                                     self.textView0.text = "Good"
                                     
                                     
@@ -601,7 +618,7 @@ class HealthKitManager {
                                           print("Hours: \(hours)")
                                           print("Seconds: \(seconds)")
                                           
-                                         
+                                          
                                           
                                         }
                                         print("key: \(m.key), value: \(m.value)")
@@ -744,25 +761,25 @@ class HealthKitManager {
   }
   
   /*
- 
+   
    let dateFormatter = DateFormatter()
    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +0000"
    guard let sd = dateFormatter.date(from: "2018-08-12 12:24:52 +0000") else {
-       fatalError(" Cannot create start date **")
+   fatalError(" Cannot create start date **")
    }
    guard let ed = dateFormatter.date(from: "2018-08-29 12:24:52 +0000") else {
-       fatalError(" Cannot create end date **")
+   fatalError(" Cannot create end date **")
    }
    
    h.fetchTotalJoulesConsumedWithCompletionHandler(
-              startDate: sd,endDate: ed) {total,err in
-                  print("\n\nfetchTotalJoulesConsumedWithCompletionHandler: \(total)")
+   startDate: sd,endDate: ed) {total,err in
+   print("\n\nfetchTotalJoulesConsumedWithCompletionHandler: \(total)")
    
    }
- 
+   
    Ref: https://mchirico.github.io/python/2018/07/18/swift4.html#read-more
- 
- */
+   
+   */
   
   // Apple's example ... does this work?
   func fetchTotalJoulesConsumedWithCompletionHandler(
@@ -771,13 +788,13 @@ class HealthKitManager {
     
     let sampleType = HKQuantityType.quantityType(
       forIdentifier: HKQuantityTypeIdentifier.flightsClimbed)
-
+    
     
     let predicate = HKQuery.predicateForSamples(withStart: startDate,
                                                 end: endDate, options: .strictStartDate)
     
     
-
+    
     let query = HKStatisticsQuery(quantityType: sampleType!,
                                   quantitySamplePredicate: predicate,
                                   options: .cumulativeSum) { query, result, error in
@@ -804,7 +821,132 @@ class HealthKitManager {
   }
   
   
+  func readVO2Max(startDate: Date) {
+    let endDate = Date()
+    
+    
+    //  let hSampleType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.vo2Max)
+    let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.vo2Max)
+    let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
+                                                 end: endDate)
+    
+    let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
+                              limit: 0, sortDescriptors: nil, resultsHandler: {
+                                (query, results, error) in
+                                
+                                DispatchQueue.main.async {
+                                  if results == nil {
+                                    return
+                                  }
+                                  
+                                  self.vo2Max = results as! [HKQuantitySample]
+                                  
+                                  print("HERE test")
+                                  print(self.vo2Max )
+                                  
+                                  // This is unique to View
+                                  let utility = Utility()
+                                  utility.writeFile(fileName: "vo2Max.csv", writeString: self.prVo2Max())
+                                  if let url = utility.getURL() {
+                                    
+                                    utility.pushToFirebase(localFile: url,
+                                                           remoteFile: "vo2Max.csv")
+                                  }
+                                  
+                                }
+    })
+    healthKitStore.execute(query)
+  }
   
+  func prVo2Max() -> (String){
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    for r in vo2Max {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for:  HKUnit(from: "ml/kg*min"))
+      
+      
+      let sd = result.startDate
+      
+      myArray.append("\(dfmt.string(from: sd )),\(count)")
+      
+    }
+    
+    print("Vo2Max:    **************************\n\n")
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
+  }
+  
+  
+  
+  // Ref: https://www.devfright.com/healthkit-tutorial-fetch-weight-data-swift/
+  func readWeight() {
+    let quantityType : Set = [HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!]
+    
+    let startDate = Date.init(timeIntervalSinceNow: -7*24*60*60)
+    let endDate = Date()
+    
+    let predicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                end: endDate,
+                                                options: .strictStartDate)
+    
+    let query = HKSampleQuery.init(sampleType: quantityType.first!,
+                                   predicate: predicate,
+                                   limit: HKObjectQueryNoLimit,
+                                   sortDescriptors: nil,
+                                   resultsHandler: { (query, results, error) in
+                                    
+                                    DispatchQueue.main.async {
+                                      if results == nil {
+                                        return
+                                      }
+                                      
+                                      var weight = results as! [HKQuantitySample]
+                                      
+                                      print("HERE test")
+                                      //print(weight )
+                                      self.prWeight(weight: weight)
+                                      
+                                    }
+                                    
+                                    
+    })
+    healthKitStore.execute(query)
+  }
+  
+  
+  func prWeight(weight: [HKQuantitySample]) -> (String){
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    for r in weight {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let count = quantity.doubleValue(for: HKUnit(from: .pound))
+      
+      
+      let sd = result.startDate
+      
+      myArray.append("\(dfmt.string(from: sd )),\(count)")
+      
+    }
+    
+    print("Weight:    **************************\n\n")
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
+  }
   
   
 }

@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       }
       print("filtered=\(filtered) length= \(filtered.count)")
       
-
+      
       
       return GIDSignIn.sharedInstance().handle(url,
                                                sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
