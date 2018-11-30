@@ -8,7 +8,7 @@
 
 /*
  How to export:
- 
+ (Just add /export_tcx at the end)
  https://www.strava.com/activities/1860986144/export_tcx
  
  
