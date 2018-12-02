@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		653C77B1493605C541F57106 /* Pods_heart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638DEB2FC632E2D67541B559 /* Pods_heart.framework */; };
 		6C8A66AF692D0132547236B7 /* Pods_heartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A708AA51F6644D3D59EB62D /* Pods_heartTests.framework */; };
+		985693C7E80F2BBCE30EB053 /* Pods_heartChiricoDeviceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13711814AEB24A10C4AD1065 /* Pods_heartChiricoDeviceTests.framework */; };
 		A52ED28820FD6D9800B93FDC /* Strava.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ED28720FD6D9800B93FDC /* Strava.swift */; };
 		A550EB2B2101097400B7015B /* HealthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550EB2A2101097400B7015B /* HealthManagerTests.swift */; };
+		A55AF68E21B6A63E00377C63 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55AF68D21B6A63E00377C63 /* Workout.swift */; };
 		A561013A20DFF07400A3188C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561013920DFF07400A3188C /* AppDelegate.swift */; };
 		A561013C20DFF07400A3188C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561013B20DFF07400A3188C /* ViewController.swift */; };
 		A561013F20DFF07400A3188C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A561013D20DFF07400A3188C /* Main.storyboard */; };
@@ -21,15 +23,18 @@
 		A561016820DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016920DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
 		A561016A20DFF14300A3188C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A561016720DFF14200A3188C /* GoogleService-Info.plist */; };
+		A58FE62E21B446AB00072FCF /* heartTestsDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58FE62D21B446AB00072FCF /* heartTestsDev.swift */; };
 		A5B355CE210A175C0025FA99 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B355CD210A175C0025FA99 /* Weather.swift */; };
 		A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C1F68E20E0E86F00674326 /* Utility.swift */; };
 		A5DEF81220E0F9CC00105C06 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DEF81120E0F9CC00105C06 /* HealthManager.swift */; };
 		A5DEF81620E2BFAD00105C06 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DEF81520E2BFAD00105C06 /* HealthKit.framework */; };
+		A5E5C33E21BB4BEB00B28EB7 /* heartChiricoDeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5C33D21BB4BEB00B28EB7 /* heartChiricoDeviceTests.swift */; };
 		A5FCBE5320E9537100B2725A /* SqliteBroker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCBE5220E9537100B2725A /* SqliteBroker.swift */; };
 		A5FCBE5620E953A000B2725A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FCBE5420E953A000B2725A /* libsqlite3.tbd */; };
 		A5FCBE5720E953A000B2725A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */; };
 		A5FCBE5B20EA49B000B2725A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCBE5A20EA49B000B2725A /* Request.swift */; };
 		A8D16D60CE45D21D57354D5B /* Pods_heartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */; };
+		F794754BF888926070DD0107 /* Pods_heartTestsDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA4B659D9CCB5C3EAD9C839 /* Pods_heartTestsDev.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,18 +52,36 @@
 			remoteGlobalIDString = A561013520DFF07400A3188C;
 			remoteInfo = heart;
 		};
+		A58FE63021B446AB00072FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A561012E20DFF07400A3188C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A561013520DFF07400A3188C;
+			remoteInfo = heart;
+		};
+		A5E5C34021BB4BEB00B28EB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A561012E20DFF07400A3188C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A561013520DFF07400A3188C;
+			remoteInfo = heart;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0D001E6C015A255B1B271DB9 /* Pods-heartUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests.release.xcconfig"; sourceTree = "<group>"; };
+		13711814AEB24A10C4AD1065 /* Pods_heartChiricoDeviceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heartChiricoDeviceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C90520AE24D771C1CCFE0CC /* Pods-heartChiricoDeviceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartChiricoDeviceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-heartChiricoDeviceTests/Pods-heartChiricoDeviceTests.release.xcconfig"; sourceTree = "<group>"; };
 		3295363FDE4DFB5502E31AAB /* Pods-heartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartTests/Pods-heartTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3A708AA51F6644D3D59EB62D /* Pods_heartTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heartTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heartUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D960F18B69F1F39DDA1DEFA /* Pods-heartChiricoDeviceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartChiricoDeviceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartChiricoDeviceTests/Pods-heartChiricoDeviceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5356DE59C2F5F3A7A15E13B3 /* Pods-heartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-heartTests/Pods-heartTests.release.xcconfig"; sourceTree = "<group>"; };
 		638DEB2FC632E2D67541B559 /* Pods_heart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EF5B115F375EB7C5F894A9E /* Pods-heart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.debug.xcconfig"; sourceTree = "<group>"; };
 		A52ED28720FD6D9800B93FDC /* Strava.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strava.swift; sourceTree = "<group>"; };
 		A550EB2A2101097400B7015B /* HealthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManagerTests.swift; sourceTree = "<group>"; };
+		A55AF68D21B6A63E00377C63 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		A561013620DFF07400A3188C /* heart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A561013920DFF07400A3188C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A561013B20DFF07400A3188C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,17 +96,26 @@
 		A561015920DFF07600A3188C /* heartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heartUITests.swift; sourceTree = "<group>"; };
 		A561015B20DFF07600A3188C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A561016720DFF14200A3188C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A58FE62B21B446AB00072FCF /* heartTestsDev.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = heartTestsDev.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58FE62D21B446AB00072FCF /* heartTestsDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heartTestsDev.swift; sourceTree = "<group>"; };
+		A58FE62F21B446AB00072FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A596A75A20E0563800E94AC9 /* heart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = heart.entitlements; sourceTree = "<group>"; };
 		A5B355CD210A175C0025FA99 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A5C1F68E20E0E86F00674326 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A5DEF81120E0F9CC00105C06 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		A5DEF81520E2BFAD00105C06 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		A5E5C33B21BB4BEB00B28EB7 /* heartChiricoDeviceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = heartChiricoDeviceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E5C33D21BB4BEB00B28EB7 /* heartChiricoDeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heartChiricoDeviceTests.swift; sourceTree = "<group>"; };
+		A5E5C33F21BB4BEB00B28EB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5FCBE5220E9537100B2725A /* SqliteBroker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteBroker.swift; sourceTree = "<group>"; };
 		A5FCBE5420E953A000B2725A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A5FCBE5520E953A000B2725A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A5FCBE5A20EA49B000B2725A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A6842EB3D9757DF57D4F8DD6 /* Pods-heartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E3559441833482A330E52EB7 /* Pods-heartTestsDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartTestsDev.release.xcconfig"; path = "Pods/Target Support Files/Pods-heartTestsDev/Pods-heartTestsDev.release.xcconfig"; sourceTree = "<group>"; };
 		E5D63D981FCCE8F7F545390D /* Pods-heart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heart.release.xcconfig"; path = "Pods/Target Support Files/Pods-heart/Pods-heart.release.xcconfig"; sourceTree = "<group>"; };
+		EBA4B659D9CCB5C3EAD9C839 /* Pods_heartTestsDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heartTestsDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D16841EA2C92AE78F22C04 /* Pods-heartTestsDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartTestsDev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-heartTestsDev/Pods-heartTestsDev.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +146,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A58FE62821B446AB00072FCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F794754BF888926070DD0107 /* Pods_heartTestsDev.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E5C33821BB4BEB00B28EB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				985693C7E80F2BBCE30EB053 /* Pods_heartChiricoDeviceTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -126,6 +174,8 @@
 				638DEB2FC632E2D67541B559 /* Pods_heart.framework */,
 				3A708AA51F6644D3D59EB62D /* Pods_heartTests.framework */,
 				444BA8AFCB40FCB213B40C50 /* Pods_heartUITests.framework */,
+				EBA4B659D9CCB5C3EAD9C839 /* Pods_heartTestsDev.framework */,
+				13711814AEB24A10C4AD1065 /* Pods_heartChiricoDeviceTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +186,8 @@
 				A561013820DFF07400A3188C /* heart */,
 				A561014D20DFF07600A3188C /* heartTests */,
 				A561015820DFF07600A3188C /* heartUITests */,
+				A58FE62C21B446AB00072FCF /* heartTestsDev */,
+				A5E5C33C21BB4BEB00B28EB7 /* heartChiricoDeviceTests */,
 				A561013720DFF07400A3188C /* Products */,
 				A8B9F09D4171C558555CBC30 /* Pods */,
 				1B72F768F24CA25269FC4656 /* Frameworks */,
@@ -148,6 +200,8 @@
 				A561013620DFF07400A3188C /* heart.app */,
 				A561014A20DFF07600A3188C /* heartTests.xctest */,
 				A561015520DFF07600A3188C /* heartUITests.xctest */,
+				A58FE62B21B446AB00072FCF /* heartTestsDev.xctest */,
+				A5E5C33B21BB4BEB00B28EB7 /* heartChiricoDeviceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +217,7 @@
 				A5FCBE5220E9537100B2725A /* SqliteBroker.swift */,
 				A5C1F68E20E0E86F00674326 /* Utility.swift */,
 				A5DEF81120E0F9CC00105C06 /* HealthManager.swift */,
+				A55AF68D21B6A63E00377C63 /* Workout.swift */,
 				A561013B20DFF07400A3188C /* ViewController.swift */,
 				A561013D20DFF07400A3188C /* Main.storyboard */,
 				A561014020DFF07600A3188C /* Assets.xcassets */,
@@ -192,6 +247,24 @@
 			path = heartUITests;
 			sourceTree = "<group>";
 		};
+		A58FE62C21B446AB00072FCF /* heartTestsDev */ = {
+			isa = PBXGroup;
+			children = (
+				A58FE62D21B446AB00072FCF /* heartTestsDev.swift */,
+				A58FE62F21B446AB00072FCF /* Info.plist */,
+			);
+			path = heartTestsDev;
+			sourceTree = "<group>";
+		};
+		A5E5C33C21BB4BEB00B28EB7 /* heartChiricoDeviceTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5E5C33D21BB4BEB00B28EB7 /* heartChiricoDeviceTests.swift */,
+				A5E5C33F21BB4BEB00B28EB7 /* Info.plist */,
+			);
+			path = heartChiricoDeviceTests;
+			sourceTree = "<group>";
+		};
 		A8B9F09D4171C558555CBC30 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +274,10 @@
 				5356DE59C2F5F3A7A15E13B3 /* Pods-heartTests.release.xcconfig */,
 				A6842EB3D9757DF57D4F8DD6 /* Pods-heartUITests.debug.xcconfig */,
 				0D001E6C015A255B1B271DB9 /* Pods-heartUITests.release.xcconfig */,
+				F0D16841EA2C92AE78F22C04 /* Pods-heartTestsDev.debug.xcconfig */,
+				E3559441833482A330E52EB7 /* Pods-heartTestsDev.release.xcconfig */,
+				4D960F18B69F1F39DDA1DEFA /* Pods-heartChiricoDeviceTests.debug.xcconfig */,
+				2C90520AE24D771C1CCFE0CC /* Pods-heartChiricoDeviceTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -268,13 +345,51 @@
 			productReference = A561015520DFF07600A3188C /* heartUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A58FE62A21B446AB00072FCF /* heartTestsDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A58FE63421B446AB00072FCF /* Build configuration list for PBXNativeTarget "heartTestsDev" */;
+			buildPhases = (
+				0A761EFE72CA84FF8150B02A /* [CP] Check Pods Manifest.lock */,
+				A58FE62721B446AB00072FCF /* Sources */,
+				A58FE62821B446AB00072FCF /* Frameworks */,
+				A58FE62921B446AB00072FCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A58FE63121B446AB00072FCF /* PBXTargetDependency */,
+			);
+			name = heartTestsDev;
+			productName = heartTestsDev;
+			productReference = A58FE62B21B446AB00072FCF /* heartTestsDev.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A5E5C33A21BB4BEB00B28EB7 /* heartChiricoDeviceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E5C34421BB4BEB00B28EB7 /* Build configuration list for PBXNativeTarget "heartChiricoDeviceTests" */;
+			buildPhases = (
+				5C004AA0C5F61328B07B552D /* [CP] Check Pods Manifest.lock */,
+				A5E5C33721BB4BEB00B28EB7 /* Sources */,
+				A5E5C33821BB4BEB00B28EB7 /* Frameworks */,
+				A5E5C33921BB4BEB00B28EB7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A5E5C34121BB4BEB00B28EB7 /* PBXTargetDependency */,
+			);
+			name = heartChiricoDeviceTests;
+			productName = heartChiricoDeviceTests;
+			productReference = A5E5C33B21BB4BEB00B28EB7 /* heartChiricoDeviceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A561012E20DFF07400A3188C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Michael Chirico";
 				TargetAttributes = {
@@ -297,6 +412,14 @@
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = A561013520DFF07400A3188C;
 					};
+					A58FE62A21B446AB00072FCF = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = A561013520DFF07400A3188C;
+					};
+					A5E5C33A21BB4BEB00B28EB7 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = A561013520DFF07400A3188C;
+					};
 				};
 			};
 			buildConfigurationList = A561013120DFF07400A3188C /* Build configuration list for PBXProject "heart" */;
@@ -315,6 +438,8 @@
 				A561013520DFF07400A3188C /* heart */,
 				A561014920DFF07600A3188C /* heartTests */,
 				A561015420DFF07600A3188C /* heartUITests */,
+				A58FE62A21B446AB00072FCF /* heartTestsDev */,
+				A5E5C33A21BB4BEB00B28EB7 /* heartChiricoDeviceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -347,9 +472,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A58FE62921B446AB00072FCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E5C33921BB4BEB00B28EB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A761EFE72CA84FF8150B02A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-heartTestsDev-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0C1E7E64E3801A61594DA49E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,32 +515,24 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-heart/Pods-heart-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -399,10 +548,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-heart/Pods-heart-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,32 +569,24 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -459,15 +602,35 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-heartUITests/Pods-heartUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C004AA0C5F61328B07B552D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-heartChiricoDeviceTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6DBD310CCEE6FF843BD61BB6 /* [CP] Check Pods Manifest.lock */ = {
@@ -536,6 +699,7 @@
 				A5FCBE5B20EA49B000B2725A /* Request.swift in Sources */,
 				A561013C20DFF07400A3188C /* ViewController.swift in Sources */,
 				A52ED28820FD6D9800B93FDC /* Strava.swift in Sources */,
+				A55AF68E21B6A63E00377C63 /* Workout.swift in Sources */,
 				A561013A20DFF07400A3188C /* AppDelegate.swift in Sources */,
 				A5C1F68F20E0E86F00674326 /* Utility.swift in Sources */,
 				A5DEF81220E0F9CC00105C06 /* HealthManager.swift in Sources */,
@@ -559,6 +723,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A58FE62721B446AB00072FCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A58FE62E21B446AB00072FCF /* heartTestsDev.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5E5C33721BB4BEB00B28EB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E5C33E21BB4BEB00B28EB7 /* heartChiricoDeviceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -571,6 +751,16 @@
 			isa = PBXTargetDependency;
 			target = A561013520DFF07400A3188C /* heart */;
 			targetProxy = A561015620DFF07600A3188C /* PBXContainerItemProxy */;
+		};
+		A58FE63121B446AB00072FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A561013520DFF07400A3188C /* heart */;
+			targetProxy = A58FE63021B446AB00072FCF /* PBXContainerItemProxy */;
+		};
+		A5E5C34121BB4BEB00B28EB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A561013520DFF07400A3188C /* heart */;
+			targetProxy = A5E5C34021BB4BEB00B28EB7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -836,6 +1026,100 @@
 			};
 			name = Release;
 		};
+		A58FE63221B446AB00072FCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0D16841EA2C92AE78F22C04 /* Pods-heartTestsDev.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UWJCYGVG9Z;
+				INFOPLIST_FILE = heartTestsDev/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartTestsDev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/heart.app/heart";
+			};
+			name = Debug;
+		};
+		A58FE63321B446AB00072FCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3559441833482A330E52EB7 /* Pods-heartTestsDev.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UWJCYGVG9Z;
+				INFOPLIST_FILE = heartTestsDev/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartTestsDev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/heart.app/heart";
+			};
+			name = Release;
+		};
+		A5E5C34221BB4BEB00B28EB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D960F18B69F1F39DDA1DEFA /* Pods-heartChiricoDeviceTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UWJCYGVG9Z;
+				INFOPLIST_FILE = heartChiricoDeviceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartChiricoDeviceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/heart.app/heart";
+			};
+			name = Debug;
+		};
+		A5E5C34321BB4BEB00B28EB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C90520AE24D771C1CCFE0CC /* Pods-heartChiricoDeviceTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UWJCYGVG9Z;
+				INFOPLIST_FILE = heartChiricoDeviceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwxstat.rx.heartChiricoDeviceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/heart.app/heart";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -871,6 +1155,24 @@
 			buildConfigurations = (
 				A561016520DFF07600A3188C /* Debug */,
 				A561016620DFF07600A3188C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A58FE63421B446AB00072FCF /* Build configuration list for PBXNativeTarget "heartTestsDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A58FE63221B446AB00072FCF /* Debug */,
+				A58FE63321B446AB00072FCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E5C34421BB4BEB00B28EB7 /* Build configuration list for PBXNativeTarget "heartChiricoDeviceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E5C34221BB4BEB00B28EB7 /* Debug */,
+				A5E5C34321BB4BEB00B28EB7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

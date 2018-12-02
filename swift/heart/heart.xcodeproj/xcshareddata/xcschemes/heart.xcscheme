@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "488CA9079247B8F25888405871FCF2F4"
+               BlueprintIdentifier = "F05BBF0ABCBAB1D55C2FE0C052A8CF62"
                BuildableName = "GoogleToolboxForMac.framework"
                BlueprintName = "GoogleToolboxForMac"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A49DF37C51E12FD88A475F57FBEFDACD"
+               BlueprintIdentifier = "0E7072CF8EBF13F170B9E934F1F9B15C"
                BuildableName = "Pods_heart.framework"
                BlueprintName = "Pods-heart"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AEB8B0F57DE387AA20A11B0342157CE2"
+               BlueprintIdentifier = "8858065D945B20B49539A0AA94A0CD23"
                BuildableName = "Pods_heartUITests.framework"
                BlueprintName = "Pods-heartUITests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "768911DD610C6B369E85AE56FAF6A263"
+               BlueprintIdentifier = "1890F752F1F694E6E524EB235237D450"
                BuildableName = "nanopb.framework"
                BlueprintName = "nanopb"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -126,6 +126,26 @@
                BlueprintIdentifier = "A561015420DFF07600A3188C"
                BuildableName = "heartUITests.xctest"
                BlueprintName = "heartUITests"
+               ReferencedContainer = "container:heart.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A58FE62A21B446AB00072FCF"
+               BuildableName = "heartTestsDev.xctest"
+               BlueprintName = "heartTestsDev"
+               ReferencedContainer = "container:heart.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A5E5C33A21BB4BEB00B28EB7"
+               BuildableName = "heartChiricoDeviceTests.xctest"
+               BlueprintName = "heartChiricoDeviceTests"
                ReferencedContainer = "container:heart.xcodeproj">
             </BuildableReference>
          </TestableReference>

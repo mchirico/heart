@@ -33,4 +33,16 @@ target 'heart' do
    pod 'GoogleSignIn'
   end
 
+  target 'heartTestsDev' do
+    inherit! :search_paths
+    # Pods for testing
+    use_frameworks!
+  end
+
+  target 'heartChiricoDeviceTests' do
+    inherit! :search_paths
+    # Pods for testing
+    use_frameworks!
+  end  
+
 end

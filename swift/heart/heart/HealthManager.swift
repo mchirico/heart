@@ -58,6 +58,8 @@ class HealthKitManager {
   var stepSamples = [HKQuantitySample]()
   var nrgSamples = [HKQuantitySample]()
   
+  var workouts = Workouts()
+  
   
   
   init(){
@@ -142,25 +144,20 @@ class HealthKitManager {
     , bloodtype:HKBloodTypeObject?)
   {
     
-    
     var age:Int?
-    
     var sex=""
-    
     
     //let birthDay: NSDate?
     var biologicalSex :HKBiologicalSexObject? = nil
     var bloodType:HKBloodTypeObject? = nil
     
     // 1. Request birthday and calculate age
-    
     do {
       
       let birthDayComponent = try healthKitStore.dateOfBirthComponents()
       
       let dfmt = DateFormatter()
       dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
-      
       
       if let birthDay = birthDayComponent.date {
         age = Calendar.current.dateComponents([.year], from: birthDay, to: Date()).year
@@ -174,7 +171,6 @@ class HealthKitManager {
       
       print("Failure to save context: \(error)")
     }
-    
     
     do {
       biologicalSex = try healthKitStore.biologicalSex()
@@ -194,8 +190,6 @@ class HealthKitManager {
       default:
         sex = "default"
       }
-      
-      
       
     }
     catch {
@@ -217,14 +211,11 @@ class HealthKitManager {
   }
   
   
-  
   func savePushUps() {
     //FunctionalStrengthTraining
     
     let end = Date()
-    
     let start = Calendar.current.date(byAdding: .minute, value: -20, to: Date())!
-    
     
     let energyBurned = HKQuantity(unit: HKUnit.kilocalorie(),
                                   doubleValue: 425.0)
@@ -492,11 +483,11 @@ class HealthKitManager {
                                   
                                   // This is unique to View
                                   let utility = Utility()
-                                  utility.writeFile(fileName: "DistanceWalkingRunning.csv", writeString: self.prDistanceWalkingRunning())
+                                  utility.writeFile(fileName: "DistanceWalkingRunning2.csv", writeString: self.prDistanceWalkingRunning())
                                   if let url = utility.getURL() {
                                     
                                     utility.pushToFirebase(localFile: url,
-                                                           remoteFile: "DistanceWalkingRunning.csv")
+                                                           remoteFile: "DistanceWalkingRunning2.csv")
                                   }
                                   
                                 }
@@ -949,7 +940,199 @@ class HealthKitManager {
   }
   
   
+  
+  func QueryToWorkout(query : HKSampleQuery,
+                      results: [HKSample]?,
+                      error: Error?,
+                      workouts: Workouts) {
+    
+    for r in results! {
+      workouts.add(sampleType: r.sampleType,
+                   startDate: r.startDate,
+                   endDate: r.endDate,
+                   description: r.description,
+                   uuid: r.uuid)
+    }
+    
+  }
+  
+  
+  
+  /*
+   Basic information about out run:
+   startDate
+   endDate
+   Temp, Humid
+   UUID (Can I use this uuid)?
+   */
+  
+  // MARK: readWorkoutLocations
+  func readRunWorkouts(startDate: Date, endDate: Date) {
+    
+    
+    
+    
+    
+    let workoutPredicate = HKQuery.predicateForWorkouts(with: .running)
+    let timePredicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                    end: endDate)
+    let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,
+                                                                       timePredicate])
+    
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+                                          ascending: false)
+    
+    let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: compound,
+                              limit: 0, sortDescriptors: [sortDescriptor], resultsHandler: {
+                                (query, results, error) in
+                                
+                                self.QueryToWorkout(query: query, results: results, error: error,workouts: self.workouts)
+                                
+                                DispatchQueue.main.async {
+                                  
+                                  print("\n\n  *****  Here is samples  *****\n")
+                                  for r in results! {
+                                    
+                                    
+                                    print("Sample Type: \(r.sampleType)")
+                                    print("startDate: \(r.startDate)")
+                                    print("endDate: \(r.endDate)")
+                                    print("description: \(r.description)")
+                                    
+                                    let dateFormatter = DateFormatter()
+                                    
+                                    if let meta = r.metadata {
+                                      print("\nMeta:")
+                                      for m in meta {
+                                        if m.key == "HKTimeZone" {
+                                          dateFormatter.timeZone = TimeZone(identifier: m.value as! String)
+                                          dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                          print("start: \(dateFormatter.string(from: r.startDate))")
+                                          print("end: \(dateFormatter.string(from: r.endDate))")
+                                          print("uuid: \(r.uuid)")
+                                          
+                                          if let temp = r.metadata?["HKWeatherTemperature"] {
+                                            print("temp: \(temp)")
+                                          }
+                                          if let humidity = r.metadata?["HKWeatherHumidity"] {
+                                            print("humidity: \(humidity)")
+                                          }
+                                          
+                                          let ti = Int(r.endDate.timeIntervalSince(r.startDate))
+                                          let seconds = ti % 60
+                                          let minutes = (ti / 60) % 60
+                                          let hours = (ti / 3600)
+                                          print("Minutes: \(minutes)")
+                                          print("Hours: \(hours)")
+                                          print("Seconds: \(seconds)")
+                                          
+                                        }
+                                        print("key: \(m.key), value: \(m.value)")
+                                      }
+                                    }
+                                    print("metadata: \(String(describing: r.metadata))")
+                                    print("device: \(String(describing: r.device))")
+                                    print("uuid: \(r.uuid)")
+                                  }
+                                  print("\n  ****  **** ***** \n\n\n")
+                                }
+    })
+    healthKitStore.execute(query)
+    print("here")
+  }
+  
+  
+  func getRunWorkouts(startDate: Date, endDate: Date,
+                      completion: @escaping (_ resultW: Workouts ) -> String)  {
+    
+    let workoutPredicate = HKQuery.predicateForWorkouts(with: .running)
+    let timePredicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                    end: endDate)
+    let compound = NSCompoundPredicate(andPredicateWithSubpredicates: [workoutPredicate,
+                                                                       timePredicate])
+    
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+                                          ascending: false)
+    
+    let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: compound,
+                              limit: 0, sortDescriptors: [sortDescriptor], resultsHandler: {
+                                
+                                     (query, results, error) in
+                                
+                                self.QueryToWorkout(query: query,
+                                                    results: results,
+                                                    error: error,
+                                                    workouts: self.workouts)
+                                
+                                let future = completion(self.workouts)
+                                print("future: \(future)")
+                                
+    })
+    healthKitStore.execute(query)
+  }
+  
+  
+  func getWatchDistance(withStart:Date, endDate: Date,
+                        completion: @escaping (_ resultW: String ) -> String) {
+    
+    
+    let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
+    let predicate2 = HKQuery.predicateForSamples(withStart: withStart,
+                                                 end: endDate)
+    
+    let query = HKSampleQuery(sampleType: hSampleType!, predicate: predicate2,
+                              limit: 0, sortDescriptors: nil, resultsHandler: {
+                                (query, results, error) in
+                                
+                                completion(self.mWalkingRunning(results: results,endDate: endDate))
+                               
+    })
+    healthKitStore.execute(query)
+  }
+  
+  
+  func mWalkingRunning(results: [HKSample]?, endDate: Date) -> (String) {
+    
+    let distanceWalkingRunning = results as! [HKQuantitySample]
+    var s = ""
+    let dfmt = DateFormatter()
+    dfmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    var myArray = [String]()
+    var totalDistanceMile = 0.0
+    var totalDistanceMeter = 0.0
+    
+    for r in distanceWalkingRunning {
+      let result = r as HKQuantitySample
+      let quantity = result.quantity
+      let dMile = quantity.doubleValue(for: HKUnit.mile())
+      let dMeter = quantity.doubleValue(for: HKUnit.meter())
+      
+      totalDistanceMile += dMile
+      totalDistanceMeter += dMeter
+      
+      let st = result.startDate
+      let ed = result.endDate
+      
+      let rate = (ed.timeIntervalSince(st)/dMile)/60
+      
+      if endDate >= ed {
+         myArray.append("\(dfmt.string(from: ed )),\(totalDistanceMile),\(rate)")
+      }
+      
+    }
+    let mySet = Array(Set(myArray))
+    for i in mySet.sorted() {
+      print(i)
+      s = s + "\(i)\n"
+    }
+    return s
+  }
+  
+  
+  
 }
+
+
 
 
 
