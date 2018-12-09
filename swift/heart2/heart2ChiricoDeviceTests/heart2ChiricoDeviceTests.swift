@@ -36,6 +36,9 @@ class heart2ChiricoDeviceTests: XCTestCase {
     let expectation2 = self.expectation(
       description: "Distance")
     
+    let expectation3 = self.expectation(
+      description: "lat/lon")
+    
     var count = 0
     
     let startString = "2017-10-10 9:56:25pm"
@@ -63,6 +66,14 @@ class heart2ChiricoDeviceTests: XCTestCase {
                         expectation2.fulfill()
                         return("stuff")
                       }
+                      
+                      h.getWorkoutRoute(startDate: sd!, endDate: ed!) {
+                        result in
+                           expectation3.fulfill()
+                           return("future")
+                      }
+                      
+                      
                       
                       expectation.fulfill()
                       return("Some future value")

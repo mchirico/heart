@@ -646,43 +646,29 @@ class HealthKitManager {
     if workoutSamples2.count < 1 {
       return
     }
-    
-    
-    
-    // let runningPredicate = HKQuery.predicateForObject(with: workoutSamples2[0].uuid)
-    
     let endDate = Date()
     let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
                                                  end: endDate)
-    
     let routeQuery = HKAnchoredObjectQuery(type: HKSeriesType.workoutRoute(), predicate: predicate2, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in
       
       guard error == nil else {
         fatalError("The initial query failed.\(error!)")
       }
-      
-      // Nill
       print("*******    Data(22) ********* \n")
       print("startDate: \(self.startDate)\n")
       
       print("\n ---  samples --- \n")
       print(samples)
       print("End Data\n\n\n")
-      
-      
+
       if samples?.count == 0 {
         return
       }
       
       self.distance = 0.0
       self.getRouteData(samples: samples,index: 0)
-      
-      
-      
     }
     self.healthKitStore.execute(routeQuery)
-    
-    
   }
   
   func getRouteData(samples:[HKSample]?,index:Int ) {
@@ -1128,6 +1114,106 @@ class HealthKitManager {
       s = s + "\(i)\n"
     }
     return s
+  }
+  
+  func getWorkoutRoute(startDate: Date, endDate: Date,
+                       completion: @escaping (_ resultW: String ) -> String){
+    
+    
+   
+    let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
+                                                 end: endDate)
+    let routeQuery = HKAnchoredObjectQuery(type: HKSeriesType.workoutRoute(), predicate: predicate2, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samples, deletedObjects, anchor, error) in
+      
+      guard error == nil else {
+        fatalError("The initial query failed.\(error!)")
+      }
+      print("*******    Data(22) ********* \n")
+      print("startDate: \(self.startDate)\n")
+      
+      print("\n ---  samples --- \n")
+      print(samples)
+      print("End Data\n\n\n")
+      
+      if samples?.count == 0 {
+        return
+      }
+      
+      self.distance = 0.0
+      self.getRouteDataII(samples: samples,index: 0)
+      
+      
+      completion("data")
+    }
+    self.healthKitStore.execute(routeQuery)
+  }
+  
+  
+  
+  
+  func getRouteDataII(samples:[HKSample]?,index:Int ) {
+    // Separate this
+    
+    let query = HKWorkoutRouteQuery(route: samples![index] as! HKWorkoutRoute) { (query, locationsOrNill, done, errorOrNil) in
+      
+      
+      if errorOrNil != nil {
+        // Handle any errors here.
+        return
+      }
+      
+      guard let locations = locationsOrNill else {
+        fatalError("*** Invalid State: This can only fail if there was an error. ***")
+      }
+      
+      let r = locationsOrNill![0]
+      var mcc = CLLocationCoordinate2D(latitude: r.coordinate.latitude,
+                                       longitude: r.coordinate.longitude)
+      
+      var myLocation = CLLocation(coordinate: mcc, altitude: r.altitude, horizontalAccuracy: r.horizontalAccuracy, verticalAccuracy: r.verticalAccuracy, timestamp: r.timestamp)
+      
+      
+      
+      for r in locationsOrNill! {
+        print("Locations time: \(r.timestamp)")
+        print("Locations lat,lon: \(r.coordinate.latitude),\(r.coordinate.longitude)")
+        
+        print("lat: \(r.coordinate.latitude)")
+        
+        
+        print("Altitude: \(r.altitude)")
+        print("Speed: \(r.speed)")
+        
+        
+        self.distance += r.distance(from: myLocation)
+        
+        
+        
+        print("Distance: \(self.distance), \(self.distance * 0.000621371) miles,  \(r.distance(from: myLocation)) \(r.distance(from: myLocation)*3.28084) feet")
+        
+        mcc = CLLocationCoordinate2D(latitude: r.coordinate.latitude,
+                                     longitude: r.coordinate.longitude)
+        
+        
+        myLocation = CLLocation(coordinate: mcc, altitude: r.altitude, horizontalAccuracy: r.horizontalAccuracy, verticalAccuracy: r.verticalAccuracy, course: r.course, speed: r.speed, timestamp: r.timestamp)
+        
+        //        myLocation = CLLocation(coordinate: mcc, altitude: r.altitude, horizontalAccuracy: r.horizontalAccuracy, verticalAccuracy: r.verticalAccuracy, timestamp: r.timestamp)
+        //
+        
+        
+        
+        
+      }
+      
+      
+      if done {
+        // The query returned all the location data associated with the route.
+        // Do something with the complete data set.
+        print("done... Distance: \(self.distance)")
+      }
+    }
+    self.healthKitStore.execute(query)
+    
   }
   
   
