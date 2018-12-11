@@ -17,7 +17,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
   var ref: DatabaseReference!
   var db: Firestore!
   
-  var startDate = Date().addingTimeInterval(-2*24*60*60)
+  var startDate = Date().addingTimeInterval(-1*24*60*60)
   var distance = 0.0
   
   // let healthManager:HealthManager = HealthManager()
@@ -62,6 +62,17 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     
     
     requestAccessToHealthKit()
+    
+    // Testing
+    
+    let startDate = Date().addingTimeInterval(-20*24*60*60)
+    let h = HealthKitManager()
+    h.requestAccessToHealthKit()
+    h.readRunWorkouts(startDate: startDate, endDate: Date())
+    
+    
+    
+    
   }
   
   
@@ -212,24 +223,28 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     //readAndWriteHeartRates()
     
     
-    // This give us the route, weather, humid
-    //readWorkoutLocations()
+    // This give us the route, weather, humid, workout start and stop
+    // readWorkoutLocations()
+
+    
+    // Works...
+//    readWalkingRunning(withStart: Date().addingTimeInterval(-1*7*60*60),
+//                       end: Date())
     
     
-    
-    // Gives distance you read on watch
-    // readWalkingRunning()
-    readWalkingRunning(withStart: Date().addingTimeInterval(-2*24*60*60),
-                       end: Date())
-    
-    
-    return
+
     // readSteps()
     
-    let startDate = Date().addingTimeInterval(-1*24*60*60)
+    
+    
+    
+    let startDate = Date().addingTimeInterval(-2*24*60*60)
     let h = HealthKitManager()
     h.requestAccessToHealthKit()
-    h.readSteps(withStart: startDate)
+    h.readRunWorkouts(startDate: startDate, endDate: Date())
+    
+    
+    //h.readSteps(withStart: startDate)
     
     
     return
@@ -569,7 +584,7 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     return s
   }
   
-  
+  // Watch accurate -- I think
   func prDistanceWalkingRunning() -> (String){
     var s = ""
     let dfmt = DateFormatter()
@@ -735,6 +750,8 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
                                     print("endDate: \(r.endDate)")
                                     print("description: \(r.description)")
                                     
+                                    
+                                    
                                     let dateFormatter = DateFormatter()
                                     
                                     
@@ -859,8 +876,6 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
         
         
         self.distance += r.distance(from: myLocation)
-        
-        
         
         print("Distance: \(self.distance),     \(r.distance(from: myLocation))")
         
@@ -1041,6 +1056,8 @@ class ViewController: UIViewController,GIDSignInUIDelegate  {
     let endDate = Date()
     
     let hSampleType = HKSampleType.quantityType( forIdentifier: HKQuantityTypeIdentifier.appleExerciseTime)
+    
+    
     let predicate2 = HKQuery.predicateForSamples(withStart: startDate,
                                                  end: endDate)
     
