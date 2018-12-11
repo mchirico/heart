@@ -22,12 +22,16 @@ class Workout {
 class Workouts {
   var records: [UUID: Workout] = [:]
   var startDate: [Date: UUID] = [:]
+  var dateArray: [Date] = []
   
   func add(workout: Workout) {
     if let uuid = workout.uuid {
       records[uuid] = workout
       if let start = workout.startDate {
         startDate[start] = uuid
+      }
+      if let date = workout.startDate {
+        dateArray.append(date)
       }
     }
   }
@@ -39,7 +43,6 @@ class Workouts {
     workout.startDate = startDate
     workout.endDate = endDate
     workout.uuid = uuid
-    
     add(workout: workout)
     
   }
